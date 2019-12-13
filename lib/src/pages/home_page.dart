@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
        initialData: [],
        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
          return ListView(
-           children: _listaItems(snapshot.data),
+           children: _listaItems(snapshot.data, context),
          );
        },
      );
@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
 
 
   //retorna listas
-  List<Widget>  _listaItems(List<dynamic> data){
+  List<Widget>  _listaItems(List<dynamic> data, BuildContext context){
       
      final List<Widget> opciones = [];
      for (var op in data) {
@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
          leading: Icon(getIconGuessFavorMaterial(name:op['icon']) ,color: Colors.blue),
          trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
          onTap: (){
-          Navigator.pushNamed(context, op['ruta']);
+          Navigator.pushNamed(context, 'alert');
          },
        );
        opciones.add(widgetTemp);
