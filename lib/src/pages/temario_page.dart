@@ -1,45 +1,44 @@
-import 'package:MAT115/src/providers/unidades_provider.dart';
-import 'package:flutter/material.dart';
-import 'package:icons_helper/icons_helper.dart';
 import 'package:MAT115/src/pages/widgets/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:MAT115/src/providers/temario_provider.dart';
 
-class HomePage extends StatelessWidget {
+class TemarioPage extends StatelessWidget {
 
-  @override
-  Widget build(BuildContext context) {
-
-    
-    return Scaffold(
+   @override
+   Widget build(BuildContext context) {
+     final unidadId = ModalRoute.of(context).settings.arguments;
+      return Scaffold(
       appBar: AppBar(
         title: Text("MAT115"),
       ),
-      body: _lista(),
+      body: _lista(unidadId),
     );
-  }
+   }
 
-
- //Retorna la lista que usaremos en el body
-  Widget _lista() {
+//Retorna la lista que usaremos en el body
+  Widget _lista(int unidadId) {
 
      return FutureBuilder(
       // future: menuProvider.cargarData(),
-      future: unidadesProvider.getUnidades(),
+      future: temariosProvider.getTemarios(unidadId),
+      
        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
          if(snapshot.hasData){
            return ListView(
            children: _listaItems(snapshot.data, context),
          );
-         }else if(snapshot.hasError){
-           return Text("Error");
+         }else if (snapshot.hasError){
+            return Text("Error");
+         }else {
+            return misWidgets.espera();
          }
-         return misWidgets.espera();
-
+         
        },
      );
   }
 
 
-  //retorna listas
+   //retorna listas
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
       
      final List<Widget> opciones = [];
@@ -50,8 +49,8 @@ class HomePage extends StatelessWidget {
          leading: Icon(Icons.folder ,color: Colors.blue),
          trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
          onTap: (){
-          Navigator.pushNamed(context, 'temario', arguments: op.id);
-          
+         // Navigator.pushNamed(context, 'alert');
+        //  print(op.id);
          },
        );
        opciones.add(widgetTemp);
@@ -62,4 +61,9 @@ class HomePage extends StatelessWidget {
   }
 
   
+
+
 }
+
+
+

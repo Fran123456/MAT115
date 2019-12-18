@@ -1,9 +1,9 @@
-echo "# flutter-componentes" >> README.md
+echo "# MAT115" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
-git remote add origin https://github.com/Fran123456/flutter-componentes.git
+git remote add origin https://github.com/Fran123456/MAT115.git
 git push -u origin master
 …or push an existing repository from the command line
-git remote add origin https://github.com/Fran123456/flutter-componentes.git
+git remote add origin https://github.com/Fran123456/MAT115.git
 git push -u origin master

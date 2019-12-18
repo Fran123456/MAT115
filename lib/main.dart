@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:componentes/src/pages/default_page.dart';
-import 'package:componentes/src/routes/routes.dart';
+import 'package:MAT115/src/pages/default_page.dart';
+import 'package:MAT115/src/routes/routes.dart';
 
 void main() => runApp(MyApp());
  
@@ -8,9 +8,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Componentes',
+      title: 'MAT115',
       debugShowCheckedModeBanner: false,
-     // home: HomePage(),
      initialRoute: '/',
      routes: routes(),
      onGenerateRoute: (RouteSettings settings){
