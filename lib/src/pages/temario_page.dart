@@ -9,7 +9,7 @@ class TemarioPage extends StatelessWidget {
      final unidadId = ModalRoute.of(context).settings.arguments;
       return Scaffold(
       appBar: AppBar(
-        title: Text("MAT115"),
+        title: Text("MAT115 - Temas"),
       ),
       body: _lista(unidadId),
     );
@@ -43,13 +43,14 @@ class TemarioPage extends StatelessWidget {
       
      final List<Widget> opciones = [];
      for (var op in data) {
-
+         
        final widgetTemp =  ListTile(
+
          title: Text(op.titulo),
          leading: Icon(Icons.folder ,color: Colors.blue),
          trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
          onTap: (){
-         // Navigator.pushNamed(context, 'alert');
+          Navigator.pushNamed(context, 'contenido', arguments: op.id);
         //  print(op.id);
          },
        );

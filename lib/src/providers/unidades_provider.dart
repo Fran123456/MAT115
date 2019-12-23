@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:MAT115/src/models/unidades_model.dart';
+import 'api/api_provider.dart';
 
 class UnidadesProvider{
 
-  String _url ="http://192.168.1.12/subjectResourcesAPI/public/api/unidadesByMateria/1";
-
   Future<List<Unidad>> getUnidades() async{
+    String _url =api.api()+"unidadesByMateria/1/"+api.key;
      final resp =await http.get(_url);
      final decodeData = json.decode(resp.body);
      final unidades = new Unidades.fromJsonList(decodeData);
@@ -14,7 +14,6 @@ class UnidadesProvider{
     //print(unidades.items[0].titulo);
     //return [];
   }
-
 }
 
 final unidadesProvider = new UnidadesProvider();
