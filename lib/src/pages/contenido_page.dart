@@ -2,6 +2,8 @@ import 'package:MAT115/src/pages/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/providers/contenido_provider.dart';
 
+
+
 class ContenidoPage extends StatelessWidget {
 
    @override
@@ -14,6 +16,9 @@ class ContenidoPage extends StatelessWidget {
       body: _lista(contenidoId),
     );
    }
+
+
+
 
 //Retorna la lista que usaremos en el body
   Widget _lista(int contenidoId) {
@@ -46,31 +51,43 @@ class ContenidoPage extends StatelessWidget {
        Widget widgetTemp;
          if (op.pdf == null){
            //videos
-               widgetTemp =  ListTile(
-              title: Text(op.url),
-              leading: Icon(Icons.folder ,color: Colors.blue),
-              trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
+              widgetTemp =  ListTile(
+              title: Text(op.titulo),
+              leading: Icon(Icons.storage ,color: Colors.blue),
+              trailing: Icon(Icons.video_library,color: Colors.blue),
               onTap: (){
-                //Navigator.pushNamed(context, 'contenido', arguments: op.id);
+                Navigator.pushNamed(context, 'video', arguments: op.url);
               //  print(op.id);
               },
              );
+
+              /*widgetTemp = Card(
+                  child: ListTile(
+                    leading: Icon(Icons.folder ,color: Colors.blue),
+                    title: Text(op.url),
+                  ),
+                );*/
+
+
          }else{
            //PDF
-             widgetTemp =  ListTile(
+              widgetTemp =  ListTile(
               title: Text(op.pdf),
-              leading: Icon(Icons.folder ,color: Colors.blue),
-              trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
+              leading: Icon(Icons.storage ,color: Colors.blue),
+              trailing: Icon(Icons.picture_as_pdf ,color: Colors.blue),
               onTap: (){
-                Navigator.pushNamed(context, 'contenido', arguments: op.id);
+                Navigator.pushNamed(context, 'pdf', arguments: op.pdf);
               //  print(op.id);
               },
              );
+
+            /* widgetTemp = Card(
+                  child: ListTile(
+                    leading: Icon(Icons.folder ,color: Colors.blue),
+                    title: Text(op.pdf),
+                  ),
+                );*/
          }
-
-
-
-
        opciones.add(widgetTemp);
        opciones.add(Divider());
 
