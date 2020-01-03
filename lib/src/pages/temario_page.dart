@@ -1,3 +1,5 @@
+import 'package:MAT115/src/models/temario_model.dart';
+import 'package:MAT115/src/models/unidades_model.dart';
 import 'package:MAT115/src/pages/widgets/widgets.dart';
 import 'package:MAT115/src/providers/api/api_provider.dart';
 import 'package:flutter/material.dart';
@@ -33,12 +35,12 @@ class _TemarioPageState extends State<TemarioPage> {
         horizontalCenterOffset: 0.0,
       );*/
 
-     final unidadId = ModalRoute.of(context).settings.arguments;
+     Unidad unidadId = ModalRoute.of(context).settings.arguments;
       return Scaffold(
       appBar: AppBar(
-        title: Text(api.nameApp + " - Temas"),
+        title: Text(unidadId.titulo),
       ),
-      body: _lista(unidadId),
+      body: _lista(unidadId.id),
     );
    }
 
@@ -69,7 +71,7 @@ class _TemarioPageState extends State<TemarioPage> {
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
       
      final List<Widget> opciones = [];
-     for (var op in data) {
+     for (Temario op in data) {
          
        final widgetTemp =  ListTile(
 
@@ -77,7 +79,7 @@ class _TemarioPageState extends State<TemarioPage> {
          leading: Icon(Icons.folder ,color: Colors.blue),
          trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
          onTap: (){
-          Navigator.pushNamed(context, 'contenido', arguments: op.id);
+          Navigator.pushNamed(context, 'contenido', arguments: op);
         //  print(op.id);
          },
        );

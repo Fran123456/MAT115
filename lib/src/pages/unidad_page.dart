@@ -1,21 +1,22 @@
 import 'package:MAT115/src/models/materia_model.dart';
+import 'package:MAT115/src/models/unidades_model.dart';
 import 'package:MAT115/src/providers/api/api_provider.dart';
+import 'package:MAT115/src/providers/unidades_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/pages/widgets/widgets.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:MAT115/src/pages/widgets/anuncios.dart';
-import 'package:MAT115/src/providers/materias_provider.dart';
-
-//materias
 
 
 
-class HomePage extends StatefulWidget {
+
+
+class UnidadesPage extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _UnidadesPageState createState() => _UnidadesPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _UnidadesPageState extends State<UnidadesPage> {
 
   @override
   void initState() {
@@ -25,6 +26,7 @@ class _HomePageState extends State<HomePage> {
   
 @override
   Widget build(BuildContext context) {
+     Materia materiaId = ModalRoute.of(context).settings.arguments;
    /* myInterstitial
     ..load()
     ..show(
@@ -35,9 +37,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       
       appBar: AppBar(
-        title: Text(api.nameApp),
+        title: Text(materiaId.siglas),
       ),
-      body: _lista(),
+      body: _lista(materiaId.id),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
           Navigator.pushNamed(context, 'info');
@@ -50,16 +52,16 @@ class _HomePageState extends State<HomePage> {
 
 
  //Retorna la lista que usaremos en el body
-  Widget _lista() {
+  Widget _lista(int materiaId) {
 
      return FutureBuilder(
       // future: menuProvider.cargarData(),
-      future: materiasProvider.getMaterias(),
+      future: unidadesProvider.getUnidades(materiaId),
        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
          if(snapshot.hasData){
            return ListView(
            children: _listaItems(snapshot.data, context),
-        );
+         );
          }else if(snapshot.hasError){
            return Text("Error");
          }
@@ -73,16 +75,18 @@ class _HomePageState extends State<HomePage> {
   //retorna listas
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
       
+      
      final List<Widget> opciones = [];
-     for (Materia op in data) {
+     for (Unidad op in data) {
 
        final widgetTemp =  ListTile(
          title: Text(op.titulo),
-         subtitle: Text(op.siglas),
          leading: Icon(Icons.folder ,color: Colors.blue),
          trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
          onTap: (){
-          Navigator.pushNamed(context, 'unidades', arguments: op);
+
+          
+          Navigator.pushNamed(context, 'temario', arguments: op);
           
          },
        );

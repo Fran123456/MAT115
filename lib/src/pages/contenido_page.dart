@@ -1,3 +1,4 @@
+import 'package:MAT115/src/models/temario_model.dart';
 import 'package:MAT115/src/pages/widgets/widgets.dart';
 import 'package:MAT115/src/providers/api/api_provider.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +11,12 @@ class ContenidoPage extends StatelessWidget {
    @override
    Widget build(BuildContext context) {
      
-     final contenidoId = ModalRoute.of(context).settings.arguments;
+     Temario contenidoId = ModalRoute.of(context).settings.arguments;
       return Scaffold(
       appBar: AppBar(
-        title: Text(api.nameApp + " - contenidos"),
+        title: Text(contenidoId.titulo),
       ),
-      body: _lista(contenidoId),
+      body: _lista(contenidoId.id),
     );
    }
 
