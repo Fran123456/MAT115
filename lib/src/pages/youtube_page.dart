@@ -29,6 +29,7 @@ Widget build(BuildContext context){
               autoPlay: true,
               forceHideAnnotation: true,
               hideThumbnail: true,
+              
               //controlsVisibleAtStart: true,
           ),
 
@@ -37,6 +38,7 @@ Widget build(BuildContext context){
     return YoutubePlayer(
        controller: _controller,
        showVideoProgressIndicator: true,
+       
        onReady: () {
           print('Player is ready.');
        },

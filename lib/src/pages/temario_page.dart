@@ -1,15 +1,42 @@
 import 'package:MAT115/src/pages/widgets/widgets.dart';
+import 'package:MAT115/src/providers/api/api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/providers/temario_provider.dart';
+import 'package:firebase_admob/firebase_admob.dart';
+import 'package:MAT115/src/pages/widgets/anuncios.dart';
 
-class TemarioPage extends StatelessWidget {
 
-   @override
+class TemarioPage extends StatefulWidget {
+  @override
+  _TemarioPageState createState() => _TemarioPageState();
+}
+
+class _TemarioPageState extends State<TemarioPage> {
+  
+
+@override
+  void initState() {
+    FirebaseAdMob.instance.initialize(appId: "ca-app-pub-4742776392392231~5346828662");
+    super.initState();
+  }
+
+
+ @override
    Widget build(BuildContext context) {
+
+
+    /*  myInterstitial
+      ..load()
+      ..show(
+        anchorType: AnchorType.bottom,
+        anchorOffset: 0.0,
+        horizontalCenterOffset: 0.0,
+      );*/
+
      final unidadId = ModalRoute.of(context).settings.arguments;
       return Scaffold(
       appBar: AppBar(
-        title: Text("MAT115 - Temas"),
+        title: Text(api.nameApp + " - Temas"),
       ),
       body: _lista(unidadId),
     );
@@ -61,10 +88,15 @@ class TemarioPage extends StatelessWidget {
      return opciones;
   }
 
-  
+
+
 
 
 }
+
+
+
+
 
 
 

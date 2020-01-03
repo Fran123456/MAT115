@@ -6,7 +6,7 @@ import 'api/api_provider.dart';
 class UnidadesProvider{
 
   Future<List<Unidad>> getUnidades() async{
-    String _url =api.api()+"unidadesByMateria/1/"+api.key;
+    String _url =api.api()+"unidadesByMateria/2/"+api.key;
      final resp =await http.get(_url);
      final decodeData = json.decode(resp.body);
      final unidades = new Unidades.fromJsonList(decodeData);

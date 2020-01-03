@@ -1,19 +1,49 @@
+import 'package:MAT115/src/providers/api/api_provider.dart';
 import 'package:MAT115/src/providers/unidades_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:icons_helper/icons_helper.dart';
 import 'package:MAT115/src/pages/widgets/widgets.dart';
+import 'package:firebase_admob/firebase_admob.dart';
+import 'package:MAT115/src/pages/widgets/anuncios.dart';
 
-class HomePage extends StatelessWidget {
+
+
+
+
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
 
   @override
+  void initState() {
+    FirebaseAdMob.instance.initialize(appId: "ca-app-pub-4742776392392231~5346828662");
+    super.initState();
+  }
+  
+@override
   Widget build(BuildContext context) {
-
-    
+   /* myInterstitial
+    ..load()
+    ..show(
+      anchorType: AnchorType.bottom,
+      anchorOffset: 0.0,
+      horizontalCenterOffset: 0.0,
+    );*/
     return Scaffold(
+      
       appBar: AppBar(
-        title: Text("MAT115"),
+        title: Text(api.nameApp),
       ),
       body: _lista(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.pushNamed(context, 'info');
+        },
+        child: Icon(Icons.info),
+
+      ),
     );
   }
 
@@ -50,6 +80,8 @@ class HomePage extends StatelessWidget {
          leading: Icon(Icons.folder ,color: Colors.blue),
          trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
          onTap: (){
+
+          
           Navigator.pushNamed(context, 'temario', arguments: op.id);
           
          },
@@ -61,5 +93,7 @@ class HomePage extends StatelessWidget {
      return opciones;
   }
 
-  
+
 }
+
+

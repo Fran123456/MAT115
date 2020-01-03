@@ -1,4 +1,5 @@
 import 'package:MAT115/src/pages/widgets/widgets.dart';
+import 'package:MAT115/src/providers/api/api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/providers/contenido_provider.dart';
 
@@ -8,10 +9,11 @@ class ContenidoPage extends StatelessWidget {
 
    @override
    Widget build(BuildContext context) {
+     
      final contenidoId = ModalRoute.of(context).settings.arguments;
       return Scaffold(
       appBar: AppBar(
-        title: Text("MAT115 - contenidos"),
+        title: Text(api.nameApp + " - contenidos"),
       ),
       body: _lista(contenidoId),
     );
@@ -72,7 +74,7 @@ class ContenidoPage extends StatelessWidget {
          }else{
            //PDF
               widgetTemp =  ListTile(
-              title: Text(op.pdf),
+              title: Text(op.titulo),
               leading: Icon(Icons.storage ,color: Colors.blue),
               trailing: Icon(Icons.picture_as_pdf ,color: Colors.blue),
               onTap: (){

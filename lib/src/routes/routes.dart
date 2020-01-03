@@ -1,4 +1,5 @@
 import 'package:MAT115/src/pages/contenido_page.dart';
+import 'package:MAT115/src/pages/info_page.dart';
 import 'package:MAT115/src/pages/pdf_page.dart';
 import 'package:MAT115/src/pages/youtube_page.dart';
 import 'package:flutter/material.dart';
@@ -13,5 +14,6 @@ Map<String, WidgetBuilder> routes(){
        'contenido':(BuildContext context)=>ContenidoPage(),
       'video':(BuildContext context)=>YoutubePage(),
        'pdf':(BuildContext context)=>PdfPage(),
+       'info':(BuildContext context)=>InfoPage(),
      };
 }

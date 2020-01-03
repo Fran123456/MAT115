@@ -25,11 +25,10 @@ class _PdfPageState extends State<PdfPage> {
 
   @override
   Widget build(BuildContext context){
-
+      var pdf = ModalRoute.of(context).settings.arguments;
+      pdf = url+pdf;
      if(_isLoading){
-       final pdf = ModalRoute.of(context).settings.arguments;
        cargarPdf(pdf);
-
        return Center(child: CircularProgressIndicator());
      }else{
       return PDFViewer(
@@ -37,10 +36,14 @@ class _PdfPageState extends State<PdfPage> {
         showPicker: true,
       );
      }
+     
+     /*return Center(
+       child: Text(pdf),
+       );*/
   }
 
   cargarPdf(String pdf) async{
-   documento = await PDFDocument.fromURL(url+pdf);
+   documento = await PDFDocument.fromURL(pdf);
 
    try{
      setState(() {

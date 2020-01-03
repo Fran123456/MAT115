@@ -21,7 +21,7 @@ class Unidad {
   int id;
   String titulo;
   String descripcion;
-  int materiaId;
+  String materiaId; //debe ser Int
   String createdAt;
   String updatedAt;
 

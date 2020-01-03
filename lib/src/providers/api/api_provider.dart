@@ -1,11 +1,12 @@
 class ApiProvider {
   
   String key = "EIGA7SBzsdho13g31052z9He0JiR-MAT115";
+  String nameApp ="MAT315";
   String api(){
-     return 'http://192.168.1.8/subjectResourcesAPI/public/api/';
+     return 'https://apiuesfia.website/public/api/';
   }
   String pdfUrl(){
-    return "http://192.168.1.8/subjectResourcesAPI/public/pdf/";
+    return 'https://apiuesfia.website/public/pdf/';
   }
 }
 

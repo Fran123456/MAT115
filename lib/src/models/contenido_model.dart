@@ -23,7 +23,7 @@ class Contenido {
   String pdf;
   String video;
   String url;
-  int temarioId;
+  String temarioId; //debe ser int
   String createdAt;
   String updatedAt;
 

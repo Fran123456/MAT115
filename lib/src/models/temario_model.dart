@@ -20,7 +20,7 @@ class Temario {
   int id;
   String titulo;
   String descripcion;
-  int unidadId;
+  String unidadId; //debe ser int
   String createdAt;
   String updatedAt;
 
