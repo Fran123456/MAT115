@@ -11,10 +11,10 @@ class _MisWidgets{
 
 List<BottomNavigationBarItem> listaBtn(){
     return const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+         /* BottomNavigationBarItem(
             icon: Icon(Icons.home),
             title: Text('Home'),
-          ),
+          ),*/
           BottomNavigationBarItem(
             icon: Icon(Icons.info),
             title: Text('Info'),

@@ -26,13 +26,10 @@ void initState() {
 int _selectedIndex = 0;
 void _onItemTapped(int index) {
   if(index==0){
-    Navigator.pushNamed(context, '/');
+    Navigator.pushNamed(context, 'info');
   }
   if(index==1){
     Navigator.pushNamed(context, 'info');
-  }
-  if(index==2){
-    Navigator.pushNamed(context, '/');
   }
 }
     
@@ -53,7 +50,7 @@ void _onItemTapped(int index) {
       bottomNavigationBar: BottomNavigationBar(
         items: misWidgets.listaBtn(),
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        //selectedItemColor: Colors.blue,
         onTap: _onItemTapped,
       ),
     );

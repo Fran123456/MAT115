@@ -28,13 +28,10 @@ class _UnidadesPageState extends State<UnidadesPage> {
 int _selectedIndex = 0;
 void _onItemTapped(int index) {
   if(index==0){
-    Navigator.pushNamed(context, '/');
+    Navigator.pushNamed(context, 'info');
   }
   if(index==1){
     Navigator.pushNamed(context, 'info');
-  }
-  if(index==2){
-    Navigator.pushNamed(context, '/');
   }
 }
   
