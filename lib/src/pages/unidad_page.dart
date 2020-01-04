@@ -23,6 +23,20 @@ class _UnidadesPageState extends State<UnidadesPage> {
     FirebaseAdMob.instance.initialize(appId: "ca-app-pub-4742776392392231~5346828662");
     super.initState();
   }
+
+
+int _selectedIndex = 0;
+void _onItemTapped(int index) {
+  if(index==0){
+    Navigator.pushNamed(context, '/');
+  }
+  if(index==1){
+    Navigator.pushNamed(context, 'info');
+  }
+  if(index==2){
+    Navigator.pushNamed(context, '/');
+  }
+}
   
 @override
   Widget build(BuildContext context) {
@@ -35,17 +49,15 @@ class _UnidadesPageState extends State<UnidadesPage> {
       horizontalCenterOffset: 0.0,
     );*/
     return Scaffold(
-      
       appBar: AppBar(
         title: Text(materiaId.siglas),
       ),
       body: _lista(materiaId.id),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.pushNamed(context, 'info');
-        },
-        child: Icon(Icons.info),
-
+       bottomNavigationBar: BottomNavigationBar(
+        items: misWidgets.listaBtn(),
+        currentIndex: _selectedIndex,
+        
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -53,7 +65,6 @@ class _UnidadesPageState extends State<UnidadesPage> {
 
  //Retorna la lista que usaremos en el body
   Widget _lista(int materiaId) {
-
      return FutureBuilder(
       // future: menuProvider.cargarData(),
       future: unidadesProvider.getUnidades(materiaId),
@@ -74,7 +85,6 @@ class _UnidadesPageState extends State<UnidadesPage> {
 
   //retorna listas
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
-      
       
      final List<Widget> opciones = [];
      for (Unidad op in data) {

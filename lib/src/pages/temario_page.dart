@@ -15,11 +15,23 @@ class TemarioPage extends StatefulWidget {
 
 class _TemarioPageState extends State<TemarioPage> {
   
-
 @override
   void initState() {
     FirebaseAdMob.instance.initialize(appId: "ca-app-pub-4742776392392231~5346828662");
     super.initState();
+  }
+
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
+    if(index==0){
+      Navigator.pushNamed(context, '/');
+    }
+    if(index==1){
+      Navigator.pushNamed(context, 'info');
+    }
+    if(index==2){
+      Navigator.pushNamed(context, '/');
+    }
   }
 
 
@@ -41,6 +53,12 @@ class _TemarioPageState extends State<TemarioPage> {
         title: Text(unidadId.titulo),
       ),
       body: _lista(unidadId.id),
+      bottomNavigationBar: BottomNavigationBar(
+        items: misWidgets.listaBtn(),
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        onTap: _onItemTapped,
+      ),
     );
    }
 

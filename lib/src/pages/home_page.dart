@@ -16,13 +16,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-  @override
-  void initState() {
+  
+@override
+void initState() {
     FirebaseAdMob.instance.initialize(appId: "ca-app-pub-4742776392392231~5346828662");
     super.initState();
+}
+
+int _selectedIndex = 0;
+void _onItemTapped(int index) {
+  if(index==0){
+    Navigator.pushNamed(context, '/');
   }
-  
+  if(index==1){
+    Navigator.pushNamed(context, 'info');
+  }
+  if(index==2){
+    Navigator.pushNamed(context, '/');
+  }
+}
+    
 @override
   Widget build(BuildContext context) {
    /* myInterstitial
@@ -33,17 +46,15 @@ class _HomePageState extends State<HomePage> {
       horizontalCenterOffset: 0.0,
     );*/
     return Scaffold(
-      
       appBar: AppBar(
         title: Text(api.nameApp),
       ),
       body: _lista(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.pushNamed(context, 'info');
-        },
-        child: Icon(Icons.info),
-
+      bottomNavigationBar: BottomNavigationBar(
+        items: misWidgets.listaBtn(),
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        onTap: _onItemTapped,
       ),
     );
   }
@@ -74,6 +85,18 @@ class _HomePageState extends State<HomePage> {
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
       
      final List<Widget> opciones = [];
+     
+    /* opciones.add(
+        Center(
+          child: Padding(
+              padding: EdgeInsets.fromLTRB(0, 20.0, 0, 10),
+              child: Text("MATERIAS",
+              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold , color: Colors.blue)
+              ),
+            ),
+        )
+     );
+     opciones.add(Divider());*/
      for (Materia op in data) {
 
        final widgetTemp =  ListTile(

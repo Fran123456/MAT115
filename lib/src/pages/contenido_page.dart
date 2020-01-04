@@ -1,12 +1,39 @@
 import 'package:MAT115/src/models/temario_model.dart';
 import 'package:MAT115/src/pages/widgets/widgets.dart';
 import 'package:MAT115/src/providers/api/api_provider.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/providers/contenido_provider.dart';
 
 
 
-class ContenidoPage extends StatelessWidget {
+class ContenidoPage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+
+
+class _HomePageState extends State<ContenidoPage> {
+
+    @override
+    void initState() {
+        FirebaseAdMob.instance.initialize(appId: "ca-app-pub-4742776392392231~5346828662");
+        super.initState();
+    }
+
+    int _selectedIndex = 0;
+    void _onItemTapped(int index) {
+      if(index==0){
+        Navigator.pushNamed(context, '/');
+      }
+      if(index==1){
+        Navigator.pushNamed(context, 'info');
+      }
+      if(index==2){
+        Navigator.pushNamed(context, '/');
+      }
+    }
 
    @override
    Widget build(BuildContext context) {
@@ -17,10 +44,14 @@ class ContenidoPage extends StatelessWidget {
         title: Text(contenidoId.titulo),
       ),
       body: _lista(contenidoId.id),
+      bottomNavigationBar: BottomNavigationBar(
+        items: misWidgets.listaBtn(),
+        currentIndex: _selectedIndex,
+        
+        onTap: _onItemTapped,
+      ),
     );
    }
-
-
 
 
 //Retorna la lista que usaremos en el body
@@ -49,6 +80,8 @@ class ContenidoPage extends StatelessWidget {
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
       
      final List<Widget> opciones = [];
+
+     
      for (var op in data) {
 
        Widget widgetTemp;
@@ -64,14 +97,6 @@ class ContenidoPage extends StatelessWidget {
               },
              );
 
-              /*widgetTemp = Card(
-                  child: ListTile(
-                    leading: Icon(Icons.folder ,color: Colors.blue),
-                    title: Text(op.url),
-                  ),
-                );*/
-
-
          }else{
            //PDF
               widgetTemp =  ListTile(
@@ -84,12 +109,7 @@ class ContenidoPage extends StatelessWidget {
               },
              );
 
-            /* widgetTemp = Card(
-                  child: ListTile(
-                    leading: Icon(Icons.folder ,color: Colors.blue),
-                    title: Text(op.pdf),
-                  ),
-                );*/
+            
          }
        opciones.add(widgetTemp);
        opciones.add(Divider());

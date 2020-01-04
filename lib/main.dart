@@ -55,9 +55,9 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'MAT115',
       debugShowCheckedModeBanner: false,
-     initialRoute: '/',
-     routes: routes(),
-     onGenerateRoute: (RouteSettings settings){
+      initialRoute: '/',
+      routes: routes(),
+      onGenerateRoute: (RouteSettings settings){
         return MaterialPageRoute(
           builder: (BuildContext context) => DefaultPage()
         );
