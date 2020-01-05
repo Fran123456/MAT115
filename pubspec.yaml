@@ -65,6 +65,7 @@ flutter:
   assets:
      - data/menu_opts.json
      - assets/factory.png
+     - assets/factory2.png
   #  - assets/mypdf.pdf
   #  - images/a_dot_ham.jpeg
 

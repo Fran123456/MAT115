@@ -28,7 +28,7 @@ class _UnidadesPageState extends State<UnidadesPage> {
 int _selectedIndex = 0;
 void _onItemTapped(int index) {
   if(index==0){
-    Navigator.pushNamed(context, 'info');
+    Navigator.pushNamed(context, 'grupos');
   }
   if(index==1){
     Navigator.pushNamed(context, 'info');
@@ -38,13 +38,13 @@ void _onItemTapped(int index) {
 @override
   Widget build(BuildContext context) {
      Materia materiaId = ModalRoute.of(context).settings.arguments;
-   /* myInterstitial
+    myInterstitial
     ..load()
     ..show(
       anchorType: AnchorType.bottom,
       anchorOffset: 0.0,
       horizontalCenterOffset: 0.0,
-    );*/
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text(materiaId.siglas),

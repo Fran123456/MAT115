@@ -23,11 +23,11 @@ class _TemarioPageState extends State<TemarioPage> {
 
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
-  if(index==0){
-    Navigator.pushNamed(context, 'info');
-  }
   if(index==1){
     Navigator.pushNamed(context, 'info');
+  }
+  if(index==0){
+    Navigator.pushNamed(context, 'grupos');
   }
 }
 
@@ -36,13 +36,13 @@ class _TemarioPageState extends State<TemarioPage> {
    Widget build(BuildContext context) {
 
 
-    /*  myInterstitial
+      myInterstitial
       ..load()
       ..show(
         anchorType: AnchorType.bottom,
         anchorOffset: 0.0,
         horizontalCenterOffset: 0.0,
-      );*/
+      );
 
      Unidad unidadId = ModalRoute.of(context).settings.arguments;
       return Scaffold(

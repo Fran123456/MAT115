@@ -25,23 +25,23 @@ void initState() {
 
 int _selectedIndex = 0;
 void _onItemTapped(int index) {
-  if(index==0){
-    Navigator.pushNamed(context, 'info');
-  }
   if(index==1){
     Navigator.pushNamed(context, 'info');
+  }
+  if(index==0){
+    Navigator.pushNamed(context, 'grupos');
   }
 }
     
 @override
   Widget build(BuildContext context) {
-   /* myInterstitial
+    myInterstitial
     ..load()
     ..show(
       anchorType: AnchorType.bottom,
       anchorOffset: 0.0,
       horizontalCenterOffset: 0.0,
-    );*/
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text(api.nameApp),
