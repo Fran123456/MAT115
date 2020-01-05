@@ -1,3 +1,4 @@
+import 'package:MAT115/src/providers/push_notifications_provider.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/pages/default_page.dart';
@@ -15,12 +16,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-
+  final GlobalKey<NavigatorState> navigatorKey = new GlobalKey<NavigatorState>();
 
   @override
   void initState() {
     
     super.initState();
+     final pushProvider = PushNotificationProvider();
+     pushProvider.iniNotifications();
+     pushProvider.mensaje.listen( (arg){
+       navigatorKey.currentState.pushNamed('noty', arguments: arg);
+     } );
   }
 
   
@@ -55,6 +61,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'MAT115',
       debugShowCheckedModeBanner: false,
+      navigatorKey: navigatorKey,
       initialRoute: '/',
       routes: routes(),
       onGenerateRoute: (RouteSettings settings){

@@ -7,3 +7,9 @@ git push -u origin master
 …or push an existing repository from the command line
 git remote add origin https://github.com/Fran123456/Resource-FIA-UES.git
 git push -u origin master
+
+
+Obtener el SHA-1
+keytool -list -v  -alias androiddebugkey -keystore C:\Users\Frank\.android\debug.keystore
+
+SHA-1:   D7:18:F2:89:EC:86:09:54:DA:7C:E6:A8:05:0D:35:91:6B:BB:A6:96

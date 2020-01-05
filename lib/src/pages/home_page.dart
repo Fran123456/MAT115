@@ -35,13 +35,13 @@ void _onItemTapped(int index) {
     
 @override
   Widget build(BuildContext context) {
-    myInterstitial
+  /*  myInterstitial
     ..load()
     ..show(
       anchorType: AnchorType.bottom,
       anchorOffset: 0.0,
       horizontalCenterOffset: 0.0,
-    );
+    );*/
     return Scaffold(
       appBar: AppBar(
         title: Text(api.nameApp),

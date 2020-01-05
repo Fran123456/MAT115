@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "686091997644",
+    "firebase_url": "https://resource-fia-ues.firebaseio.com",
+    "project_id": "resource-fia-ues",
+    "storage_bucket": "resource-fia-ues.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686091997644:android:207f3d99527775c1d84d69",
+        "android_client_info": {
+          "package_name": "www.apiuesfia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686091997644-csg53p361adqgsgf05eifijroos1bc0s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "www.apiuesfia",
+            "certificate_hash": "d718f289ec860954da7ce6a8050d35916bbba696"
+          }
+        },
+        {
+          "client_id": "686091997644-l7pdpu0o2aajusr2g3le03dvk9lerojf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6bLMEH9GkJF6y-DGULRObVJB_eYetMxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686091997644-l7pdpu0o2aajusr2g3le03dvk9lerojf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
