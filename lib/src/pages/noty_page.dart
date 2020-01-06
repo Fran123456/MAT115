@@ -23,7 +23,7 @@ class _NotyPageState extends State<NotyPage> {
           ),
           body:  Padding(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-          child:    Card(
+            child:    Card(
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[

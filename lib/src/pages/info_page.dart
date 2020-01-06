@@ -10,74 +10,86 @@ class InfoPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Sobre nosotros"),
       ),
-      body: Center(
-        child: cuerpo(),
-      ),
+      body: misCartas(),
+      
     );
    }
 
-   Widget cuerpo(){
-      return Column(
-          children: <Widget>[
-            Image(
-                image: AssetImage('assets/factory2.png'),
-                height: 70,
-                width: 70,
-                color: Colors.blue,
-              ),
-           
-            
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 2,0, 2),
-              child: Text("Contactanos: navasfran98@gmail.com",
-              style: TextStyle(fontSize: 15.0)
-              ),
-            ),
-            
-            Padding(
-              padding: EdgeInsets.fromLTRB(0, 10, 0, 30),
-              child: Text("Desarollado por: Francisco Navas",
-              style: TextStyle(fontSize: 15.0)
-              ),
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                
-                    IconButton(
-                    icon: new Icon(FontAwesomeIcons.facebook), 
-                    color: Colors.blue,
-                    iconSize: 40,
-                    onPressed:  () =>   _launchURL("https://www.facebook.com/fran.navas.96"),
-                    ),
-
-                    IconButton(
-                    icon: new Icon(FontAwesomeIcons.whatsapp), 
-                    color: Colors.green,
-                    iconSize: 40,
-                    onPressed:  () =>   _launchURL("https://wa.me/+50370234903"),
-                    
-                    ),
-
-                    IconButton(
-                    icon: new Icon(FontAwesomeIcons.chrome), 
-                    color: Colors.black,
-                    iconSize: 40,
-                    onPressed:  () =>   _launchURL("https://www.apiuesfia.website"),
-                    ),
-                
-              ],
-            ),
-           Padding(
-              padding: EdgeInsets.fromLTRB(20, 20,20, 20),
-              child: Text("Si tienes contenido, no dudes en compartirlo, sera de gran ayuda para la comunidad, muchas gracias :)",
-              style: TextStyle(fontSize: 14.0)
-              ),
-            ),
-            
-          ],
+   Widget misCartas(){
+     return ListView(
+       children: <Widget>[
+          Column(
+            children: <Widget>[
+              cartaMi(),
+              agradecimientos()
+            ],
+          )
+        ],
       );
+   }
+
+
+  Widget agradecimientos(){
+     return  Padding(
+                padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+                child:Column(
+                          children:  <Widget>[
+                            ListTile(
+                                title: Text('Agradecimientos', style: TextStyle(fontSize: 20),),
+                              ),
+                            Card(
+                              child: ListTile(
+                                title: Text('Andres Cordero'),
+                                subtitle: Text("Aporte de contenido"),
+                              ),
+                            ),
+                          ],
+                      )
+              );
+  }
+
+
+   Widget cartaMi(){
+      return  Padding(
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            child:    Card(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                         ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                          
+                          title: Text("Autor: Francisco Navas", style: TextStyle(fontSize: 20.0) ,),
+                          subtitle: Text("navasfran98@gmail.com", style: TextStyle(fontSize: 17.0),),
+                          trailing: Text("Version 1.0"),
+                        ),
+                        ButtonBar(
+                          children: <Widget>[
+                             IconButton(
+                              icon: new Icon(FontAwesomeIcons.facebook), 
+                              color: Colors.blue,
+                              iconSize: 40,
+                              onPressed:  () =>   _launchURL("https://www.facebook.com/fran.navas.96"),
+                              ),
+                              IconButton(
+                              icon: new Icon(FontAwesomeIcons.whatsapp), 
+                              color: Colors.green,
+                              iconSize: 40,
+                              onPressed:  () =>   _launchURL("https://wa.me/+50370234903"),
+                              
+                              ),
+                              IconButton(
+                              icon: new Icon(FontAwesomeIcons.chrome), 
+                              color: Colors.black,
+                              iconSize: 40,
+                              onPressed:  () =>   _launchURL("https://www.apiuesfia.website"),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
    }
 
 
@@ -91,3 +103,14 @@ class InfoPage extends StatelessWidget {
       }
     }
 }
+
+
+
+
+
+
+
+
+
+
+       
