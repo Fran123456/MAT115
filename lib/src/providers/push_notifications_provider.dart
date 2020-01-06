@@ -24,8 +24,8 @@ class PushNotificationProvider{
         print(info);
         List<String> listaNoty = List();
         if(Platform.isAndroid){
-         // String titulo = info['notification']['title'] ?? "no-data";
-         // String mensaje = info['notification']['body'] ?? "no-data";
+          String titulo = info['data']['titulo'] ?? "no-data";
+          String mensaje = info['data']['mensaje'] ?? "no-data";
           String id = info['data']['id'] ?? "no-data";
           String key = info['data']['key'] ?? "no-data";
           String type = info['data']['type'] ?? "no-data";
@@ -34,6 +34,8 @@ class PushNotificationProvider{
           listaNoty.add(id);
           listaNoty.add(key);
           listaNoty.add(type);
+          listaNoty.add(titulo);
+          listaNoty.add(mensaje);
           _mensajesStreamController.sink.add(listaNoty);
         }
 
@@ -45,8 +47,8 @@ class PushNotificationProvider{
 
           List<String> listaNoty = List();
           if(Platform.isAndroid){
-           // String titulo = info['notification']['title'] ?? "no-data";
-           // String mensaje = info['notification']['body'] ?? "no-data";
+            String titulo = info['data']['titulo'] ?? "no-data";
+            String mensaje = info['data']['mensaje'] ?? "no-data";
             String id = info['data']['id'] ?? "no-data";
             String key = info['data']['key'] ?? "no-data";
             String type = info['data']['type'] ?? "no-data";
@@ -55,6 +57,8 @@ class PushNotificationProvider{
             listaNoty.add(id);
             listaNoty.add(key);
             listaNoty.add(type);
+            listaNoty.add(titulo);
+            listaNoty.add(mensaje);
             _mensajesStreamController.sink.add(listaNoty);
           }
 
@@ -66,6 +70,8 @@ class PushNotificationProvider{
         if(Platform.isAndroid){
           //String titulo = info['notification']['title'] ?? "no-data";
         //  String mensaje = info['notification']['body'] ?? "no-data";
+          String titulo = info['data']['titulo'] ?? "no-data";
+          String mensaje = info['data']['mensaje'] ?? "no-data";
           String id = info['data']['id'] ?? "no-data";
           String key = info['data']['key'] ?? "no-data";
           String type = info['data']['type'] ?? "no-data";
@@ -74,6 +80,8 @@ class PushNotificationProvider{
           listaNoty.add(id);
           listaNoty.add(key);
           listaNoty.add(type);
+          listaNoty.add(titulo);
+          listaNoty.add(mensaje);
           _mensajesStreamController.sink.add(listaNoty);
         }
         
