@@ -77,15 +77,14 @@ class _HomePageState extends State<ContenidoPage> {
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
       
      final List<Widget> opciones = [];
-
      
      for (var op in data) {
-
        Widget widgetTemp;
          if (op.pdf == null){
            //videos
               widgetTemp =  ListTile(
               title: Text(op.titulo),
+              subtitle: Row(children: <Widget>[Icon(Icons.remove_red_eye), Padding(padding: EdgeInsets.fromLTRB(6, 0, 0, 0) ,child: Text(op.vistas)) ,],) ,
               leading: Icon(Icons.storage ,color: Colors.blue),
               trailing: Icon(Icons.video_library,color: Colors.blue),
               onTap: (){
@@ -98,6 +97,7 @@ class _HomePageState extends State<ContenidoPage> {
            //PDF
               widgetTemp =  ListTile(
               title: Text(op.titulo),
+              subtitle: Row(children: <Widget>[Icon(Icons.remove_red_eye), Padding(padding: EdgeInsets.fromLTRB(6, 0, 0, 0) ,child: Text(op.vistas)) ,],) ,
               leading: Icon(Icons.storage ,color: Colors.blue),
               trailing: Icon(Icons.picture_as_pdf ,color: Colors.blue),
               onTap: (){

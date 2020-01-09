@@ -122,13 +122,13 @@ void _onItemTapped(int index) {
          trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
          onTap: (){
 
-            myInterstitial
+           /* myInterstitial
             ..load()
             ..show(
               anchorType: AnchorType.bottom,
               anchorOffset: 0.0,
               horizontalCenterOffset: 0.0,
-            );
+            );*/
           Navigator.pushNamed(context, 'unidades', arguments: op);
           
          },

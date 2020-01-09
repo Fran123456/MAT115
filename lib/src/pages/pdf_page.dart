@@ -1,18 +1,21 @@
 
 
 import 'package:MAT115/src/providers/api/api_provider.dart';
+import 'package:MAT115/src/providers/contenido_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 
 /// Homepage
 class PdfPage extends StatefulWidget {
+  
   @override
   _PdfPageState createState() => _PdfPageState();
   
 }
 
 class _PdfPageState extends State<PdfPage> {
+  bool soldado = true;
   bool _isLoading = true;
   PDFDocument documento;
   String url = api.pdfUrl();
@@ -21,16 +24,22 @@ class _PdfPageState extends State<PdfPage> {
   void initState(){
       super.initState();
       
+      
   }
 
   @override
   Widget build(BuildContext context){
       var pdf = ModalRoute.of(context).settings.arguments;
+      if(soldado==true){
+        contenidoProvider.vistas(pdf);
+        soldado=false;
+      } 
       pdf = url+pdf;
      if(_isLoading){
        cargarPdf(pdf);
        return Center(child: CircularProgressIndicator());
      }else{
+      
       return PDFViewer(
         document: documento,
         showPicker: true,
@@ -44,10 +53,11 @@ class _PdfPageState extends State<PdfPage> {
 
   cargarPdf(String pdf) async{
    documento = await PDFDocument.fromURL(pdf);
-
+   
    try{
      setState(() {
      _isLoading = false;
+     
      });
    }catch(e){
      

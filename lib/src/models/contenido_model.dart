@@ -23,6 +23,7 @@ class Contenido {
   String pdf;
   String video;
   String url;
+  String vistas;
   String temarioId; //debe ser int
   String createdAt;
   String updatedAt;
@@ -34,6 +35,7 @@ class Contenido {
    this.pdf,
    this.video,
    this.url,
+   this.vistas,
    this.temarioId,
    this.createdAt,
    this.updatedAt,
@@ -46,6 +48,7 @@ class Contenido {
     pdf              = json['pdf'];
     video              = json['video'];
     url              = json['url'];
+    vistas             = json['vistas'];
     temarioId        = json['temario_id'];
     createdAt      = json['created_at'];
     updatedAt      = json['updated_at'];

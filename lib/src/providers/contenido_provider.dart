@@ -17,9 +17,9 @@ class ContenidoProvider{
     
   }
 
-  vistas(String id) {
+   vistas(String id) {
     String _url = api.api()  + "vistas/" + id.toString()+"/"+api.key;
-    final resp =await http.get(_url);
+    final resp = http.get(_url);
   }
 
 }
