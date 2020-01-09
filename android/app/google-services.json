@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "686091997644-0fjckrp2pu3eqf5bb1ik75d9okfvd631.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "www.apiuesfia",
+            "certificate_hash": "5832b3f19215b74398d40b180e5c416b8110970c"
+          }
+        },
+        {
           "client_id": "686091997644-csg53p361adqgsgf05eifijroos1bc0s.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

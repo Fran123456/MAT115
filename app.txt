@@ -10,9 +10,11 @@ git push -u origin master
 
 
 Obtener el SHA-1
-keytool -list -v  -alias androiddebugkey -keystore C:\Users\Frank\.android\debug.keystore
-
+keytool -list -v  -alias androiddebugkey -keystore C:\Users\Frank\.android\debug.keystore (escritorio)
 SHA-1:   D7:18:F2:89:EC:86:09:54:DA:7C:E6:A8:05:0D:35:91:6B:BB:A6:96
+
+keytool -list -v  -alias androiddebugkey -keystore C:\Users\home\.android\debug.keystore (laptop)
+58:32:B3:F1:92:15:B7:43:98:D4:0B:18:0E:5C:41:6B:81:10:97:0C
 
 
 noty:

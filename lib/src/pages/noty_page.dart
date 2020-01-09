@@ -1,4 +1,6 @@
 import 'package:MAT115/src/models/unidades_model.dart';
+import 'package:MAT115/src/pages/widgets/anuncios.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 
 
@@ -11,8 +13,22 @@ class NotyPage extends StatefulWidget {
 }
 
 class _NotyPageState extends State<NotyPage> {
+
+@override
+void initState() {
+    FirebaseAdMob.instance.initialize(appId: "ca-app-pub-4742776392392231~5346828662");
+    super.initState();
+}
+
 @override
     Widget build(BuildContext context) {
+    /*  myInterstitial
+    ..load()
+    ..show(
+      anchorType: AnchorType.bottom,
+      anchorOffset: 0.0,
+      horizontalCenterOffset: 0.0,
+    );*/
 
      List arg = ModalRoute.of(context).settings.arguments;
    

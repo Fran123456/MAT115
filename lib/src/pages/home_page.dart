@@ -26,22 +26,41 @@ void initState() {
 int _selectedIndex = 0;
 void _onItemTapped(int index) {
   if(index==1){
-    Navigator.pushNamed(context, 'info');
-  }
-  if(index==0){
-    Navigator.pushNamed(context, 'grupos');
-  }
-}
-    
-@override
-  Widget build(BuildContext context) {
-  /*  myInterstitial
+
+    /* myInterstitial
     ..load()
     ..show(
       anchorType: AnchorType.bottom,
       anchorOffset: 0.0,
       horizontalCenterOffset: 0.0,
     );*/
+    Navigator.pushNamed(context, 'info');
+  }
+  if(index==0){
+
+     /*myInterstitial
+    ..load()
+    ..show(
+      anchorType: AnchorType.bottom,
+      anchorOffset: 0.0,
+      horizontalCenterOffset: 0.0,
+    );*/
+    Navigator.pushNamed(context, 'grupos');
+  }
+}
+    
+@override
+  Widget build(BuildContext context) {
+   /* myInterstitial
+    ..load()
+    ..show(
+      anchorType: AnchorType.bottom,
+      anchorOffset: 0.0,
+      horizontalCenterOffset: 0.0,
+    );*/
+
+    
+
     return Scaffold(
       appBar: AppBar(
         title: Text(api.nameApp),
@@ -102,6 +121,14 @@ void _onItemTapped(int index) {
          leading: Icon(Icons.folder ,color: Colors.blue),
          trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
          onTap: (){
+
+            myInterstitial
+            ..load()
+            ..show(
+              anchorType: AnchorType.bottom,
+              anchorOffset: 0.0,
+              horizontalCenterOffset: 0.0,
+            );
           Navigator.pushNamed(context, 'unidades', arguments: op);
           
          },

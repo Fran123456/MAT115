@@ -24,6 +24,7 @@ class _TemarioPageState extends State<TemarioPage> {
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
   if(index==1){
+
     Navigator.pushNamed(context, 'info');
   }
   if(index==0){
@@ -36,7 +37,7 @@ class _TemarioPageState extends State<TemarioPage> {
    Widget build(BuildContext context) {
 
 
-      /*myInterstitial
+    /*  myInterstitial
       ..load()
       ..show(
         anchorType: AnchorType.bottom,

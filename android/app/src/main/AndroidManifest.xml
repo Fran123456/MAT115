@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="Resources FIA"
+        android:label="FIARES"
         android:icon="@mipmap/launcher_icon3"
         android:usesCleartextTraffic="true"
         >

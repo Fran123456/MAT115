@@ -6,6 +6,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class InfoPage extends StatelessWidget {
    @override
    Widget build(BuildContext context) {
+
+
+
+     
       return Scaffold(
       appBar: AppBar(
         title: Text("Sobre nosotros"),
@@ -21,6 +25,7 @@ class InfoPage extends StatelessWidget {
           Column(
             children: <Widget>[
               cartaMi(),
+              paypal(),
               agradecimientos()
             ],
           )
@@ -83,6 +88,36 @@ class InfoPage extends StatelessWidget {
                               color: Colors.black,
                               iconSize: 40,
                               onPressed:  () =>   _launchURL("https://www.apiuesfia.website"),
+                              ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+   }
+
+
+
+    Widget paypal(){
+      return  Padding(
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            child:    Card(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                         ListTile(
+                          contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                          title: Text("¿Deseas apoyar el proyecto?", style: TextStyle(fontSize: 19.0) ,),
+                          subtitle: Text("Puedes donarnos por paypal, tu donación servira para pagar el alojamiento del sitio web y de nuestra API.", style: TextStyle(fontSize: 17.0),),
+                        ),
+                        ButtonBar(
+                          children: <Widget>[
+                             IconButton(
+                              icon: new Icon(FontAwesomeIcons.paypal), 
+                              color: Colors.blue,
+                              iconSize: 40,
+                              onPressed:  () =>   _launchURL("https://paypal.me/FranciscoNavas?locale.x=es_XC"),
                               ),
                           ],
                         ),

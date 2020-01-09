@@ -14,6 +14,12 @@ class ContenidoProvider{
      return contenidos.items;
     //print(unidades.items[0].titulo);
     //return [];
+    
+  }
+
+  vistas(String id) {
+    String _url = api.api()  + "vistas/" + id.toString()+"/"+api.key;
+    final resp =await http.get(_url);
   }
 
 }
