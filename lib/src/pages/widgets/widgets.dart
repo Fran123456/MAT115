@@ -53,6 +53,9 @@ Widget error(){
           ListTile(
             leading:  new Icon(FontAwesomeIcons.shoppingBag, color: Colors.blue,),
             title: Text('Market Place'),
+            onTap: (){
+              Navigator.pushNamed(context, 'productos');
+            },
           ),
           ListTile(
             leading: new Icon(FontAwesomeIcons.whatsapp, color: Colors.green,),
