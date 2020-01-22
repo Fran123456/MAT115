@@ -23,31 +23,7 @@ void initState() {
     super.initState();
 }
 
-int _selectedIndex = 0;
-void _onItemTapped(int index) {
-  if(index==1){
 
-    /* myInterstitial
-    ..load()
-    ..show(
-      anchorType: AnchorType.bottom,
-      anchorOffset: 0.0,
-      horizontalCenterOffset: 0.0,
-    );*/
-    Navigator.pushNamed(context, 'info');
-  }
-  if(index==0){
-
-     /*myInterstitial
-    ..load()
-    ..show(
-      anchorType: AnchorType.bottom,
-      anchorOffset: 0.0,
-      horizontalCenterOffset: 0.0,
-    );*/
-    Navigator.pushNamed(context, 'grupos');
-  }
-}
     
 @override
   Widget build(BuildContext context) {
@@ -59,19 +35,15 @@ void _onItemTapped(int index) {
       horizontalCenterOffset: 0.0,
     );*/
 
-    
 
     return Scaffold(
       appBar: AppBar(
         title: Text(api.nameApp),
       ),
-      body: _lista(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: misWidgets.listaBtn(),
-        currentIndex: _selectedIndex,
-        //selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
+      drawer: Drawer(
+      child: misWidgets.barraNav(context),
       ),
+      body: _lista(),
     );
   }
 
@@ -101,18 +73,7 @@ void _onItemTapped(int index) {
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
       
      final List<Widget> opciones = [];
-     
-    /* opciones.add(
-        Center(
-          child: Padding(
-              padding: EdgeInsets.fromLTRB(0, 20.0, 0, 10),
-              child: Text("MATERIAS",
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold , color: Colors.blue)
-              ),
-            ),
-        )
-     );
-     opciones.add(Divider());*/
+   
      for (Materia op in data) {
 
        final widgetTemp =  ListTile(

@@ -25,7 +25,7 @@ class InfoPage extends StatelessWidget {
           Column(
             children: <Widget>[
               cartaMi(),
-              paypal(),
+             // paypal(),
               agradecimientos()
             ],
           )
@@ -99,7 +99,7 @@ class InfoPage extends StatelessWidget {
 
 
 
-    Widget paypal(){
+    /*Widget paypal(){
       return  Padding(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
             child:    Card(
@@ -125,7 +125,7 @@ class InfoPage extends StatelessWidget {
                     ),
                   ),
                 );
-   }
+   }*/
 
 
 
