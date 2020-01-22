@@ -1,4 +1,5 @@
 import 'package:MAT115/src/pages/Carreras_page.dart';
+import 'package:MAT115/src/pages/colaboradores_page.dart';
 import 'package:MAT115/src/pages/contenido_page.dart';
 import 'package:MAT115/src/pages/grupo_page.dart';
 import 'package:MAT115/src/pages/info_page.dart';
@@ -13,6 +14,7 @@ import 'package:MAT115/src/pages/temario_page.dart';
 Map<String, WidgetBuilder> routes(){
 
   return  <String, WidgetBuilder>{
+    'colaboradores':(BuildContext context)=>ColaboradoresPage(),
        'materia':(BuildContext context)=>MateriaPage(),
        'carrera':(BuildContext context)=>CarreraPage(),
        'temario':(BuildContext context)=>TemarioPage(),

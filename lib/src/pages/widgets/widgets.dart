@@ -71,6 +71,11 @@ Widget error(){
           ListTile(
             leading: new Icon(FontAwesomeIcons.user, ),
             title: Text('Colaboradores'),
+            onTap: (){
+              Navigator.pushNamed(context, 'colaboradores');
+            },
+
+            
           ),
            ListTile(
             leading:  new Icon(FontAwesomeIcons.pencilAlt,),
