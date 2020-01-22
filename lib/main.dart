@@ -61,6 +61,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'FIARES',
       debugShowCheckedModeBanner: false,
+      //theme: new ThemeData(primaryColor: Color.fromRGBO(58, 66, 86, 1.0)),
       navigatorKey: navigatorKey,
       initialRoute: 'carrera',
       routes: routes(),

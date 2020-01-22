@@ -8,6 +8,10 @@ class ApiProvider {
   String pdfUrl(){
     return 'https://apiuesfia.website/public/pdf/';
   }
+
+  String apiUploads(){
+     return 'https://apiuesfia.website/public/uploads/';
+  }
 }
 
 ApiProvider api = new ApiProvider();

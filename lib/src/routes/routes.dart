@@ -6,6 +6,7 @@ import 'package:MAT115/src/pages/info_page.dart';
 import 'package:MAT115/src/pages/noty_page.dart';
 import 'package:MAT115/src/pages/pdf_page.dart';
 import 'package:MAT115/src/pages/producto_page.dart';
+import 'package:MAT115/src/pages/productos_page.dart';
 import 'package:MAT115/src/pages/unidad_page.dart';
 import 'package:MAT115/src/pages/youtube_page.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ Map<String, WidgetBuilder> routes(){
 
   return  <String, WidgetBuilder>{
      'productos':(BuildContext context)=>ProductosPage(),
+     'producto':(BuildContext context)=>ProductoPage(),
     'colaboradores':(BuildContext context)=>ColaboradoresPage(),
        'materia':(BuildContext context)=>MateriaPage(),
        'carrera':(BuildContext context)=>CarreraPage(),

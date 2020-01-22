@@ -23,6 +23,7 @@ class Producto {
   String descripcion;
   String whatsapp;
   String nombre;
+  String principal;
   String createdAt;
   String updatedAt;
 
@@ -34,6 +35,7 @@ class Producto {
    this.descripcion,
    this.whatsapp,
    this.nombre,
+   this.principal,
    this.createdAt,
    this.updatedAt,
   });
@@ -46,6 +48,7 @@ class Producto {
     descripcion     = json['descripcion'];
     whatsapp            = json['whatsapp'];
     nombre            = json['nombre'];
+    principal      = json['principal'];
     createdAt      = json['created_at'];
     updatedAt      = json['updated_at'];
 

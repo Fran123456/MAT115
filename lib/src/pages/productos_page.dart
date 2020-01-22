@@ -1,4 +1,3 @@
-import 'package:MAT115/src/models/Imagenes_model.dart';
 import 'package:MAT115/src/providers/api/api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/pages/widgets/widgets.dart';
@@ -13,12 +12,12 @@ import 'package:url_launcher/url_launcher.dart';
 
 
 
-class ProductoPage extends StatefulWidget {
+class ProductosPage extends StatefulWidget {
   @override
-  _ProductoPageState createState() => _ProductoPageState();
+  _ProductosPageState createState() => _ProductosPageState();
 }
 
-class _ProductoPageState extends State<ProductoPage> {
+class _ProductosPageState extends State<ProductosPage> {
   
 @override
 void initState() {
@@ -37,7 +36,7 @@ void initState() {
       anchorOffset: 0.0,
       horizontalCenterOffset: 0.0,
     );*/
-    Producto productoId = ModalRoute.of(context).settings.arguments;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -47,17 +46,17 @@ void initState() {
       drawer: Drawer(
       child: misWidgets.barraNav(context),
       ),
-      body: _lista(productoId.id),
+      body: _lista(),
     );
   }
 
 
  //Retorna la lista que usaremos en el body
-  Widget _lista(int id) {
+  Widget _lista() {
 
      return FutureBuilder(
       // future: menuProvider.cargarData(),
-      future: productosProvider.getPictures(id),
+      future: productosProvider.getProductos(),
        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
          if(snapshot.hasData){
            return ListView(
@@ -80,7 +79,7 @@ void initState() {
      
      opciones.add(Padding(padding:EdgeInsets.all(10.0),));
    
-     for (Imagen op in data) {
+     for (Producto op in data) {
 
       /* final widgetTemp =  ListTile(
          title: Text(op.nombre),
@@ -89,10 +88,54 @@ void initState() {
          leading: Image.network('https://frasesparami.com/wp-content/uploads/2019/06/fotos-tumblr.jpg'),
          
        );*/
-          final widgetTemp  = Image.network(api.apiUploads()+ op.url);
-            
-    
-      opciones.add(widgetTemp);
+   /*final widgetTemp  =  Center(
+    child: Card(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+         /* Image.network("https://www.marketingdirecto.com/wp-content/uploads/2019/10/logo-volkswagen.jpg", 
+          height: 300, 
+          width: 300 ,),*/
+           ListTile(
+            leading: IconButton(
+                icon: Icon(FontAwesomeIcons.whatsapp ,color: Colors.green,size: 28,  ),
+                onPressed: (){
+                  _launchURL("https://api.whatsapp.com/send?phone=503"+op.whatsapp);
+                },
+              ),
+              trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
+            title: Text(op.titulo),
+            subtitle: Text( "\$" + op.precio),
+            onTap: (){
+               Navigator.pushNamed(context, 'producto', arguments: op);
+            },
+          ),
+
+        ],
+      ),
+    ),
+  );*/
+
+
+      final widgetTemp = Card(
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+        child: Column(
+          children: <Widget>[
+            Image.network(api.apiUploads()+ op.principal,
+              height: 300, width: 300,
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Text("Hola Mundo"),
+            )
+          ],
+        ));
+
+       
+       opciones.add(widgetTemp);
+       opciones.add(Divider());
+
      }
      return opciones;
   }
