@@ -5,8 +5,9 @@ import 'api/api_provider.dart';
 
 class MateriasProvider{
 
-  Future<List<Materia>> getMaterias() async{
-    String _url =api.api()+"getMaterias/"+api.key;
+  Future<List<Materia>> getMaterias(int id) async{
+   // String _url =api.api()+"getMaterias/"+api.key;
+    String _url =api.api()+"getMaterias/"+id.toString()+"/"+api.key;
      final resp =await http.get(_url);
      final decodeData = json.decode(resp.body);
      final materias = new Materias.fromJsonList(decodeData);

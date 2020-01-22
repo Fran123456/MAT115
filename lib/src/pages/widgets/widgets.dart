@@ -10,23 +10,16 @@ class _MisWidgets{
     );
   }
 
-List<BottomNavigationBarItem> listaBtn(){
-    return const <BottomNavigationBarItem>[
-         /* BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Home'),
-          ),*/
-         
-          BottomNavigationBarItem(
-            icon: Icon(Icons.group),
-            title: Text('Grupos'),
-          ),
-           BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            title: Text('Info'),
-          ),
-        ];
+
+Widget error(){
+  return Center(
+    child: Text("Error, cierra la app y vuelva abrir.",
+    textAlign: TextAlign.center,
+    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+    ),
+  );
 }
+
 
  Widget barraNav(context){
       return ListView(
@@ -53,6 +46,9 @@ List<BottomNavigationBarItem> listaBtn(){
           ListTile(
             leading:  new Icon(FontAwesomeIcons.bookOpen),
             title: Text('Carreras'),
+            onTap: (){
+              Navigator.pushNamed(context, 'carrera');
+            },
           ),
           ListTile(
             leading:  new Icon(FontAwesomeIcons.shoppingBag, color: Colors.blue,),
@@ -93,7 +89,21 @@ List<BottomNavigationBarItem> listaBtn(){
         ],
       );
   }
+
+  Widget subtitulo(String texto, double fontS){
+   return Padding(
+       padding:EdgeInsets.all(16.0),
+       child: Text(
+          texto,
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle( fontSize: fontS),
+        ),
+     );
+  }
   
+
+
 
 }
 

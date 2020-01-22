@@ -59,10 +59,10 @@ class _MyAppState extends State<MyApp> {
 @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MAT115',
+      title: 'FIARES',
       debugShowCheckedModeBanner: false,
       navigatorKey: navigatorKey,
-      initialRoute: '/',
+      initialRoute: 'carrera',
       routes: routes(),
       onGenerateRoute: (RouteSettings settings){
         return MaterialPageRoute(

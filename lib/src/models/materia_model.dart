@@ -22,6 +22,8 @@ class Materia {
   String siglas;
   String titulo;
   String descripcion;
+  String carreraId;
+  String ciclo;
   String createdAt;
   String updatedAt;
 
@@ -30,6 +32,8 @@ class Materia {
    this.siglas,
    this.titulo,
    this.descripcion,
+   this.carreraId,
+   this.ciclo,
    this.createdAt,
    this.updatedAt,
   });
@@ -39,6 +43,8 @@ class Materia {
     siglas           = json['siglas'];
     titulo            = json['titulo'];
     descripcion     = json['descripcion'];
+    carreraId        = json['carrera_id'];
+    ciclo           = json['ciclo'];
     createdAt      = json['created_at'];
     updatedAt      = json['updated_at'];
 

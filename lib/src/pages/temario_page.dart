@@ -1,7 +1,6 @@
 import 'package:MAT115/src/models/temario_model.dart';
 import 'package:MAT115/src/models/unidades_model.dart';
 import 'package:MAT115/src/pages/widgets/widgets.dart';
-import 'package:MAT115/src/providers/api/api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/providers/temario_provider.dart';
 import 'package:firebase_admob/firebase_admob.dart';
@@ -21,18 +20,7 @@ class _TemarioPageState extends State<TemarioPage> {
     super.initState();
   }
 
-  int _selectedIndex = 0;
-  void _onItemTapped(int index) {
-  if(index==1){
-
-    Navigator.pushNamed(context, 'info');
-  }
-  if(index==0){
-    Navigator.pushNamed(context, 'grupos');
-  }
-}
-
-
+ 
  @override
    Widget build(BuildContext context) {
 
@@ -50,13 +38,11 @@ class _TemarioPageState extends State<TemarioPage> {
       appBar: AppBar(
         title: Text(unidadId.titulo),
       ),
-      body: _lista(unidadId.id),
-      bottomNavigationBar: BottomNavigationBar(
-        items: misWidgets.listaBtn(),
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        onTap: _onItemTapped,
+      drawer: Drawer(
+      child: misWidgets.barraNav(context),
       ),
+      body: _lista(unidadId.id),
+      
     );
    }
 
@@ -73,7 +59,7 @@ class _TemarioPageState extends State<TemarioPage> {
            children: _listaItems(snapshot.data, context),
          );
          }else if (snapshot.hasError){
-            return Text("Error");
+            return misWidgets.error();
          }else {
             return misWidgets.espera();
          }

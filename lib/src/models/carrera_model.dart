@@ -9,8 +9,8 @@ class Carreras {
     if ( jsonList == null ) return;
 
     for ( var item in jsonList  ) {
-      final pelicula = new Carrera.fromJsonMap(item);
-      items.add( pelicula );
+      final ca = new Carrera.fromJsonMap(item);
+      items.add( ca );
     }
 
   }
@@ -19,16 +19,14 @@ class Carreras {
 
 class Carrera {
   int id;
-  String siglas;
-  String titulo;
+  String carrera;
   String descripcion;
   String createdAt;
   String updatedAt;
 
   Carrera({
    this.id,
-   this.siglas,
-   this.titulo,
+   this.carrera,
    this.descripcion,
    this.createdAt,
    this.updatedAt,
@@ -36,8 +34,7 @@ class Carrera {
 
   Carrera.fromJsonMap( Map<String, dynamic> json ) {
     id                = json['id'];
-    siglas           = json['siglas'];
-    titulo            = json['titulo'];
+    carrera            = json['carrera'];
     descripcion     = json['descripcion'];
     createdAt      = json['created_at'];
     updatedAt      = json['updated_at'];

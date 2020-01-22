@@ -1,32 +1,32 @@
-import 'package:MAT115/src/models/materia_model.dart';
-import 'package:MAT115/src/models/unidades_model.dart';
-import 'package:MAT115/src/providers/unidades_provider.dart';
+import 'package:MAT115/src/models/carrera_model.dart';
+import 'package:MAT115/src/providers/api/api_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/pages/widgets/widgets.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'package:MAT115/src/pages/widgets/anuncios.dart';
+import 'package:MAT115/src/providers/carrera_provider.dart';
+
+//materias
 
 
 
-
-
-class UnidadesPage extends StatefulWidget {
+class CarreraPage extends StatefulWidget {
   @override
-  _UnidadesPageState createState() => _UnidadesPageState();
+  _CarreraPageState createState() => _CarreraPageState();
 }
 
-class _UnidadesPageState extends State<UnidadesPage> {
-
-  @override
-  void initState() {
-    FirebaseAdMob.instance.initialize(appId: "ca-app-pub-4742776392392231~5346828662");
-    super.initState();
-  }
-
+class _CarreraPageState extends State<CarreraPage> {
   
 @override
+void initState() {
+    FirebaseAdMob.instance.initialize(appId: "ca-app-pub-4742776392392231~5346828662");
+    super.initState();
+}
+
+
+    
+@override
   Widget build(BuildContext context) {
-     Materia materiaId = ModalRoute.of(context).settings.arguments;
    /* myInterstitial
     ..load()
     ..show(
@@ -34,30 +34,31 @@ class _UnidadesPageState extends State<UnidadesPage> {
       anchorOffset: 0.0,
       horizontalCenterOffset: 0.0,
     );*/
+
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(materiaId.siglas),
+        title: Text(api.nameApp),
       ),
       drawer: Drawer(
       child: misWidgets.barraNav(context),
       ),
-      body: _lista(materiaId.id),
-
-      
+      body: _lista(),
     );
   }
 
 
  //Retorna la lista que usaremos en el body
-  Widget _lista(int materiaId) {
+  Widget _lista() {
+
      return FutureBuilder(
       // future: menuProvider.cargarData(),
-      future: unidadesProvider.getUnidades(materiaId),
+      future: carrerasProvider.getCarreras(),
        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
          if(snapshot.hasData){
            return ListView(
            children: _listaItems(snapshot.data, context),
-         );
+        );
          }else if(snapshot.hasError){
            return misWidgets.error();
          }
@@ -72,16 +73,29 @@ class _UnidadesPageState extends State<UnidadesPage> {
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
       
      final List<Widget> opciones = [];
-     for (Unidad op in data) {
+
+     
+    Widget aux = misWidgets.subtitulo("CARRERAS Y OTROS", 23);
+    opciones.add(aux);
+    opciones.add(Divider());
+   
+     for (Carrera op in data) {
 
        final widgetTemp =  ListTile(
-         title: Text(op.titulo),
+         title: Text(op.carrera),
+   
          leading: Icon(Icons.folder ,color: Colors.blue),
          trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
          onTap: (){
 
-          
-          Navigator.pushNamed(context, 'temario', arguments: op);
+           /* myInterstitial
+            ..load()
+            ..show(
+              anchorType: AnchorType.bottom,
+              anchorOffset: 0.0,
+              horizontalCenterOffset: 0.0,
+            );*/
+          Navigator.pushNamed(context, 'materia', arguments: op);
           
          },
        );
@@ -94,9 +108,5 @@ class _UnidadesPageState extends State<UnidadesPage> {
 
 
 }
-
-
-
-
 
 

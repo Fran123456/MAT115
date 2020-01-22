@@ -22,15 +22,7 @@ class _HomePageState extends State<ContenidoPage> {
         super.initState();
     }
 
-    int _selectedIndex = 0;
-    void _onItemTapped(int index) {
-      if(index==1){
-        Navigator.pushNamed(context, 'info');
-      }
-      if(index==0){
-        Navigator.pushNamed(context, 'grupos');
-      }
-    }
+   
 
    @override
    Widget build(BuildContext context) {
@@ -40,13 +32,11 @@ class _HomePageState extends State<ContenidoPage> {
       appBar: AppBar(
         title: Text(contenidoId.titulo),
       ),
-      body: _lista(contenidoId.id),
-      bottomNavigationBar: BottomNavigationBar(
-        items: misWidgets.listaBtn(),
-        currentIndex: _selectedIndex,
-        
-        onTap: _onItemTapped,
+      drawer: Drawer(
+      child: misWidgets.barraNav(context),
       ),
+      body: _lista(contenidoId.id),
+      
     );
    }
 
@@ -63,7 +53,7 @@ class _HomePageState extends State<ContenidoPage> {
            children: _listaItems(snapshot.data, context),
          );
          }else if (snapshot.hasError){
-            return Text("Error");
+            return misWidgets.error();
          }else {
             return misWidgets.espera();
          }
