@@ -46,7 +46,7 @@ void initState() {
                          ListTile(
                           contentPadding: EdgeInsets.fromLTRB(20, 20, 20, 10),
                           leading: Icon(Icons.speaker_notes),
-                          title: Text(arg[3], style: TextStyle(fontSize: 25.0) ,),
+                          title: Text(arg[3], style: TextStyle(fontSize: 24.0) ,),
                           subtitle: Text(arg[4], style: TextStyle(fontSize: 17.0),),
                         ),
                         ButtonBar(
