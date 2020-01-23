@@ -75,10 +75,52 @@ void initState() {
 
   //retorna listas
   List<Widget> _listaItems(List<dynamic> data, BuildContext context){
+
+    Producto productoId = ModalRoute.of(context).settings.arguments;
+
+
+    final c = Card(
+        clipBehavior: Clip.antiAlias,
+       
+        child: Column(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Text(productoId.titulo, style: TextStyle(fontSize: 30)),
+            ),
+            
+            Container(
+              alignment: Alignment.bottomRight,
+              padding: EdgeInsets.all(10),
+              child: Column(
+                children: <Widget>[
+                  Text(productoId.descripcion ?? "sin descripión", style: TextStyle(fontSize: 17)),
+                ],
+              ),
+            ),
+            Divider(),
+            Container(
+              padding: EdgeInsets.all(2),
+              child: ListTile(
+                 title: Text("Publicado por: "+productoId.nombre, style: TextStyle(fontSize: 16),),
+                 subtitle: Text("Fecha: " + productoId.fecha),
+                 trailing: Icon(FontAwesomeIcons.whatsapp ,color: Colors.blue, size: 27,),
+                 onTap: (){
+                  
+                 },
+              )
+            ),
+            
+            
+          ],
+        )
+
+        );
+
       
      final List<Widget> opciones = [];
-     
      opciones.add(Padding(padding:EdgeInsets.all(10.0),));
+     opciones.add(c);
    
      for (Imagen op in data) {
 

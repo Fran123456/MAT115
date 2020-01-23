@@ -118,19 +118,30 @@ void initState() {
 
 
       final widgetTemp = Card(
+        
         clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
         child: Column(
           children: <Widget>[
             Image.network(api.apiUploads()+ op.principal,
-              height: 300, width: 300,
             ),
             Container(
               padding: EdgeInsets.all(10),
-              child: Text("Hola Mundo"),
-            )
+              child: ListTile(
+                 title: Text(op.titulo, style: TextStyle(fontSize: 20),),
+                 subtitle: Text("Publicado por: " + op.nombre),
+                 trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
+                 onTap: (){
+                   Navigator.pushNamed(context, 'producto', arguments: op);
+                 },
+              )
+            ),
+            
+            
           ],
-        ));
+        )
+
+        );
 
        
        opciones.add(widgetTemp);
