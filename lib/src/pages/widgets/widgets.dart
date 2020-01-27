@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -109,6 +111,73 @@ Widget error(){
         ),
      );
   }
+
+
+
+
+   Widget fondoApp(){
+    final gradiente = Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: FractionalOffset(0.0, 0.5),
+          end: FractionalOffset(0.0, 1.0),
+          colors: [
+            Color.fromRGBO(52, 54, 101, 1.0),
+            Color.fromRGBO(35, 37, 57, 1.0),
+          ]
+        )
+      ),
+    );
+
+    final cajaRosa = Transform.rotate(
+        angle: -pi/3.0,
+        child: Container(
+        height: 360.0,
+        width: 360.0,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(50.0),
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(236, 98, 188, 1.0),
+              Color.fromRGBO(241, 142, 172, 1.0),
+            ]
+          )
+        ),
+      ),
+    );
+
+    return Stack(
+      children: <Widget>[
+        gradiente,
+        /*Positioned(
+          top: -200.0,
+          child: cajaRosa,
+        )*/
+      ],
+    );
+ }
+
+
+
+ Widget titulos(titulo, subtitulo){
+   return SafeArea(
+      child: Container(
+      padding: EdgeInsets.all(25),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Center(
+              child: Text(titulo, style: TextStyle(color: Colors.white,fontSize: 22.0, fontWeight: FontWeight.bold)),
+            ),
+            SizedBox(height: 10.0,),
+           // Text(subtitulo, style: TextStyle(color: Colors.white,fontSize: 20.0)),
+          ],
+        ),
+      )
+   );
+ }
   
 
 

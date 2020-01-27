@@ -3,6 +3,7 @@ import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:MAT115/src/pages/default_page.dart';
 import 'package:MAT115/src/routes/routes.dart';
+import 'package:flutter/services.dart';
 
 
 
@@ -58,6 +59,12 @@ class _MyAppState extends State<MyApp> {
 
 @override
   Widget build(BuildContext context) {
+
+  /*  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Colors.white,
+
+    ));*/
+
     return MaterialApp(
       title: 'FIARES',
       debugShowCheckedModeBanner: false,

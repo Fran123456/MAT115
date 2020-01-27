@@ -8,8 +8,6 @@ import 'package:MAT115/src/providers/carrera_provider.dart';
 
 //materias
 
-
-
 class CarreraPage extends StatefulWidget {
   @override
   _CarreraPageState createState() => _CarreraPageState();
@@ -38,27 +36,40 @@ void initState() {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(35, 37, 57, 1.0),
         title: Text(api.nameApp),
       ),
       drawer: Drawer(
       child: misWidgets.barraNav(context),
       ),
-      body: _lista(),
+      body: Stack(
+        children: <Widget>[
+          misWidgets.fondoApp(),
+          SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+               misWidgets.titulos("TODAS LAS CARRERAS", ""),
+               _lista()
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
+
 
 
  //Retorna la lista que usaremos en el body
   Widget _lista() {
 
      return FutureBuilder(
-      // future: menuProvider.cargarData(),
       future: carrerasProvider.getCarreras(),
        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
          if(snapshot.hasData){
-           return ListView(
-           children: _listaItems(snapshot.data, context),
-        );
+           return Table(
+             children: _listaItems(snapshot.data, context),
+           );
          }else if(snapshot.hasError){
            return misWidgets.error();
          }
@@ -70,40 +81,47 @@ void initState() {
 
 
   //retorna listas
-  List<Widget> _listaItems(List<dynamic> data, BuildContext context){
-      
-     final List<Widget> opciones = [];
-
-     
-    Widget aux = misWidgets.subtitulo("CARRERAS Y OTROS", 23);
-    opciones.add(aux);
-    opciones.add(Divider());
+  List<TableRow> _listaItems(List<dynamic> data, BuildContext context){
    
-     for (Carrera op in data) {
+    final List<TableRow> opciones = [];
+    for (Carrera op in data) {
+      final widgetTemp = TableRow(
+        children: [
+          crearBtn(op.carrera)
+        ]
+      );
 
-       final widgetTemp =  ListTile(
-         title: Text(op.carrera),
-   
-         leading: Icon(Icons.folder ,color: Colors.blue),
-         trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
-         onTap: (){
+     opciones.add(widgetTemp);
 
-           /* myInterstitial
-            ..load()
-            ..show(
-              anchorType: AnchorType.bottom,
-              anchorOffset: 0.0,
-              horizontalCenterOffset: 0.0,
-            );*/
-          Navigator.pushNamed(context, 'materia', arguments: op);
-          
-         },
-       );
-       opciones.add(widgetTemp);
-       opciones.add(Divider());
+    }
+    return opciones;
+  }
 
-     }
-     return opciones;
+  Widget crearBtn(texto){
+    //filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+     return GestureDetector(
+          onTap: (){},
+          child: Container(
+          height: 140.0,
+          margin: EdgeInsets.all(10.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107,1.0),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              CircleAvatar(
+                backgroundColor: Colors.pinkAccent,
+                radius: 35.0,
+                child: Icon(Icons.swap_calls, color: Colors.white, size: 30.0 ,),
+              ),
+              Text(texto, style: TextStyle(color: Colors.pinkAccent),),
+              
+            ],
+          ),
+        ),
+     );
   }
 
 
