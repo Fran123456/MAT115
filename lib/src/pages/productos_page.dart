@@ -8,10 +8,6 @@ import 'package:MAT115/src/providers/producto_provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-//materias
-
-
-
 class ProductosPage extends StatefulWidget {
   @override
   _ProductosPageState createState() => _ProductosPageState();
@@ -25,8 +21,6 @@ void initState() {
     super.initState();
 }
 
-
-    
 @override
   Widget build(BuildContext context) {
    /* myInterstitial
@@ -39,15 +33,28 @@ void initState() {
 
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Ventas"),
-      ),
-      resizeToAvoidBottomPadding: false,
-      drawer: Drawer(
-      child: misWidgets.barraNav(context),
-      ),
-      body: _lista(),
-    );
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(35, 37, 57, 1.0),
+          title: Text("Venta"),
+        ),
+        drawer: Drawer(
+        child: misWidgets.barraNav(context),
+        ),
+        body: Stack(
+          children: <Widget>[
+            misWidgets.fondoApp(),
+            SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                misWidgets.titulos("Productos", ""),
+                _lista()
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+
   }
 
 
@@ -59,9 +66,9 @@ void initState() {
       future: productosProvider.getProductos(),
        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
          if(snapshot.hasData){
-           return ListView(
-           children: _listaItems(snapshot.data, context),
-        );
+           return Table(
+             children: _listaItems(snapshot.data, context),
+           );
          }else if(snapshot.hasError){
            return misWidgets.error();
          }
@@ -72,8 +79,68 @@ void initState() {
   }
 
 
+  List<TableRow> _listaItems(List<dynamic> data, BuildContext context){
+    final List<TableRow> opciones = [];
+    for (Producto op in data) {
+      final widgetTemp = TableRow(
+        children: [
+          crearBtn(context, op)
+        ]
+      );
+     opciones.add(widgetTemp);
+    }
+    return opciones;
+  }
+
+
+  Widget crearBtn(context, Producto op){
+    //filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+     return GestureDetector(
+          onTap: (){
+            //Navigator.pushNamed(context, 'materia', arguments: op);
+          },
+          child: Container(
+          height: 130.0,
+          margin: EdgeInsets.all(9.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107,1.0),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              
+              SizedBox(width: 10,),
+              Image.network(api.apiUploads()+op.principal, height: 100, width: 90,
+
+              ),
+              SizedBox(width: 5,),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    child:SizedBox(width:30,), 
+                  ),
+                    Text(op.titulo, style: TextStyle(color: Colors.pinkAccent, fontSize: 14.0, fontWeight: FontWeight.bold),),
+                  
+                  Expanded(
+                    child: Text(op.titulo, style: TextStyle(color: Colors.pinkAccent, fontSize: 14.0, fontWeight: FontWeight.bold),),
+                  ),
+                  SizedBox(width: 60,),
+                ],
+              )
+              
+              
+            ],
+          ),
+        ),
+     );
+  }
+
+
   //retorna listas
-  List<Widget> _listaItems(List<dynamic> data, BuildContext context){
+  /*List<Widget> _listaItems(List<dynamic> data, BuildContext context){
       
      final List<Widget> opciones = [];
      
@@ -149,7 +216,7 @@ void initState() {
 
      }
      return opciones;
-  }
+  }*/
 
 
 

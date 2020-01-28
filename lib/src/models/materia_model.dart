@@ -22,7 +22,7 @@ class Materia {
   String siglas;
   String titulo;
   String descripcion;
-  int carreraId;
+  String carreraId;
   String ciclo;
   String createdAt;
   String updatedAt;

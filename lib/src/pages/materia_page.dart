@@ -37,15 +37,29 @@ void initState() {
     );*/
 
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(carreraId.carrera),
-      ),
-      drawer: Drawer(
-      child: misWidgets.barraNav(context),
-      ),
-      body: _lista(carreraId.id),
-    );
+  return Scaffold(
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(35, 37, 57, 1.0),
+          title: Text(carreraId.carrera),
+        ),
+        drawer: Drawer(
+        child: misWidgets.barraNav(context),
+        ),
+        body: Stack(
+          children: <Widget>[
+            misWidgets.fondoApp(),
+            SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                misWidgets.titulos("TODAS LAS MATERIAS", ""),
+                _lista(carreraId.id)
+                ],
+              ),
+            )
+          ],
+        ),
+      );
+
   }
 
 
@@ -57,9 +71,9 @@ void initState() {
       future: materiasProvider.getMaterias(carreraId),
        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
          if(snapshot.hasData){
-           return ListView(
-           children: _listaItems(snapshot.data, context),
-        );
+           return Table(
+             children: _listaItems(snapshot.data, context),
+           );
          }else if(snapshot.hasError){
            return misWidgets.error();
          }
@@ -71,39 +85,55 @@ void initState() {
 
 
   //retorna listas
-  List<Widget> _listaItems(List<dynamic> data, BuildContext context){
-      
-     final List<Widget> opciones = [];
+  List<TableRow> _listaItems(List<dynamic> data, BuildContext context){
+    final List<TableRow> opciones = [];
+    for (Materia op in data) {
+      final widgetTemp = TableRow(
+        children: [
+          crearBtn(context, op)
+        ]
+      );
+     opciones.add(widgetTemp);
+    }
+    return opciones;
+  }
 
 
-   
-     for (Materia op in data) {
+  Widget crearBtn(context, Materia op){
+    //filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+     return GestureDetector(
+          onTap: (){
+            Navigator.pushNamed(context, 'unidades', arguments: op);
+          },
+          child: Container(
+          height: 70.0,
+          margin: EdgeInsets.all(9.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107,1.0),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Row(
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(width: 10,),
+              CircleAvatar(
+                backgroundColor: Colors.pinkAccent,
+                radius: 20.0,
+                child: Icon(Icons.navigate_next, color: Colors.white, size: 18.0 ,),
+              ),
+              SizedBox(width: 10,),
+              Expanded(
+                child: Text(op.titulo, style: TextStyle(color: Colors.pinkAccent, fontSize: 20.0, fontWeight: FontWeight.bold),),
+              ),
+              
+              Text(op.siglas, style: TextStyle(color: Colors.pinkAccent, fontSize: 12.0),),
+              SizedBox(width: 5,),
 
-       
-
-       final widgetTemp =  ListTile(
-         title: Text(op.titulo),
-         subtitle: Text(op.siglas),
-         leading: Icon(Icons.folder ,color: Colors.blue),
-         trailing: Icon(Icons.keyboard_arrow_right,color: Colors.blue),
-         onTap: (){
-
-           /* myInterstitial
-            ..load()
-            ..show(
-              anchorType: AnchorType.bottom,
-              anchorOffset: 0.0,
-              horizontalCenterOffset: 0.0,
-            );*/
-          Navigator.pushNamed(context, 'unidades', arguments: op);
-          
-         },
-       );
-       opciones.add(widgetTemp);
-       opciones.add(Divider());
-
-     }
-     return opciones;
+            ],
+          ),
+        ),
+     );
   }
 
 

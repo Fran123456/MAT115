@@ -79,31 +79,29 @@ void initState() {
      );
   }
 
-
   //retorna listas
   List<TableRow> _listaItems(List<dynamic> data, BuildContext context){
-   
     final List<TableRow> opciones = [];
     for (Carrera op in data) {
       final widgetTemp = TableRow(
         children: [
-          crearBtn(op.carrera)
+          crearBtn(context, op)
         ]
       );
-
      opciones.add(widgetTemp);
-
     }
     return opciones;
   }
 
-  Widget crearBtn(texto){
+  Widget crearBtn(context, Carrera op){
     //filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
      return GestureDetector(
-          onTap: (){},
+          onTap: (){
+            Navigator.pushNamed(context, 'materia', arguments: op);
+          },
           child: Container(
-          height: 140.0,
-          margin: EdgeInsets.all(10.0),
+          height: 130.0,
+          margin: EdgeInsets.all(9.0),
           decoration: BoxDecoration(
             color: Color.fromRGBO(62, 66, 107,1.0),
             borderRadius: BorderRadius.circular(20.0),
@@ -114,9 +112,13 @@ void initState() {
               CircleAvatar(
                 backgroundColor: Colors.pinkAccent,
                 radius: 35.0,
-                child: Icon(Icons.swap_calls, color: Colors.white, size: 30.0 ,),
+                child: Icon(Icons.library_books, color: Colors.white, size: 30.0 ,),
               ),
-              Text(texto, style: TextStyle(color: Colors.pinkAccent),),
+              Center(
+                child: Text(op.carrera, style: TextStyle(color: Colors.pinkAccent, fontSize: 20.0, fontWeight: FontWeight.bold),),
+              ),
+              
+              
               
             ],
           ),

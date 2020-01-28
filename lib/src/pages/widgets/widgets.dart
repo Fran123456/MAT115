@@ -7,8 +7,13 @@ class _MisWidgets{
  
 
  Widget espera(){
-    return Center(
-      child: CircularProgressIndicator(),
+    return Container(
+      height: 400,
+      child: Center(
+      child: CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.pinkAccent),
+        ),
+      ),
     );
   }
 
@@ -24,79 +29,103 @@ Widget error(){
 
 
  Widget barraNav(context){
-      return ListView(
+
+     TextStyle estilos = TextStyle(color: Colors.white);
+     var colores = Colors.pinkAccent;
+
+      return Container(
+        decoration: BoxDecoration(
+           gradient: LinearGradient(
+                  begin: FractionalOffset(0.0, 0.5),
+                  end: FractionalOffset(0.0, 1.0),
+                  colors: [
+                    Color.fromRGBO(52, 54, 101, 1.0),
+                    Color.fromRGBO(35, 37, 57, 1.0),
+                  ]
+                ),
+          ),
+        child: ListView(
         padding: EdgeInsets.zero,
         children:  <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-             // image: Image
-              image: const DecorationImage(
-                image: AssetImage('assets/sin.png'),
-               // fit: BoxFit.cover,
+            DrawerHeader(
+              decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: FractionalOffset(0.0, 0.5),
+                  end: FractionalOffset(0.0, 1.0),
+                  colors: [
+                    Color.fromRGBO(35, 37, 57, 1.0),
+                    Color.fromRGBO(52, 54, 101, 1.0),
+                  ]
+                ),
+                //color: Colors.blue,
+              // image: Image
+                image: const DecorationImage(
+                  image: AssetImage('assets/sin.png'),
+                // fit: BoxFit.cover,
+                ),
+              
               ),
-             
-            ),
-            child: Text(
-              '',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
+              child: Text(
+                '',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
               ),
             ),
-          ),
-          ListTile(
-            leading:  new Icon(FontAwesomeIcons.bookOpen),
-            title: Text('Carreras'),
-            onTap: (){
-              Navigator.pushNamed(context, 'carrera');
-            },
-          ),
-          ListTile(
-            leading:  new Icon(FontAwesomeIcons.shoppingBag, color: Colors.blue,),
-            title: Text('Market Place'),
-            onTap: (){
-              Navigator.pushNamed(context, 'productos');
-            },
-          ),
-          ListTile(
-            leading: new Icon(FontAwesomeIcons.whatsapp, color: Colors.green,),
-            title: Text('Grupos'),
-            onTap: (){
-              Navigator.pushNamed(context, 'grupos');
-            },
-          ),
-          ListTile(
-            leading:  new Icon(FontAwesomeIcons.university, color: Colors.red,),
-            title: Text('ASEIAS'),
-            onTap: (){
-             // Navigator.pushNamed(context, 'info');
-            },
-          ),
-          ListTile(
-            leading: new Icon(FontAwesomeIcons.user, ),
-            title: Text('Colaboradores'),
-            onTap: (){
-              Navigator.pushNamed(context, 'colaboradores');
-            },
-
             
-          ),
-           ListTile(
-            leading:  new Icon(FontAwesomeIcons.pencilAlt,),
-            title: Text('Tutorias'),
-            onTap: (){
-             // Navigator.pushNamed(context, 'info');
-            },
-          ),
-          ListTile(
-            leading:  new Icon(FontAwesomeIcons.info,),
-            title: Text('Info'),
-            onTap: (){
-              Navigator.pushNamed(context, 'info');
-            },
-          ),
-        ],
+            ListTile(
+              leading:  new Icon(FontAwesomeIcons.bookOpen, color: colores,),
+              title: Text('Carreras', style: estilos,),
+              onTap: (){
+                Navigator.pushNamed(context, 'carrera');
+              },
+            ),
+            ListTile(
+              leading:  new Icon(FontAwesomeIcons.shoppingBag, color: colores,),
+              title: Text('Market Place', style: estilos,),
+              onTap: (){
+                Navigator.pushNamed(context, 'productos');
+              },
+            ),
+            ListTile(
+              leading: new Icon(FontAwesomeIcons.whatsapp, color: colores,),
+              title: Text('Grupos', style: estilos,),
+              onTap: (){
+                Navigator.pushNamed(context, 'grupos');
+              },
+            ),
+            ListTile(
+              leading:  new Icon(FontAwesomeIcons.university, color: colores,),
+              title: Text('ASEIAS', style: estilos,),
+              onTap: (){
+              // Navigator.pushNamed(context, 'info');
+              },
+            ),
+            ListTile(
+              leading: new Icon(FontAwesomeIcons.user,  color: colores,),
+              title: Text('Colaboradores', style: estilos,),
+              onTap: (){
+                Navigator.pushNamed(context, 'colaboradores');
+              },
+
+            ),
+            ListTile(
+              leading:  new Icon(FontAwesomeIcons.pencilAlt, color: colores,),
+              title: Text('Tutorias', style: estilos,),
+              onTap: (){
+              // Navigator.pushNamed(context, 'info');
+              },
+            ),
+            ListTile(
+              leading:  new Icon(FontAwesomeIcons.info, color: colores,),
+              title: Text('Info', style: estilos,),
+              onTap: (){
+                Navigator.pushNamed(context, 'info');
+              },
+            ),
+          ],
+        ),
       );
   }
 
@@ -164,12 +193,12 @@ Widget error(){
  Widget titulos(titulo, subtitulo){
    return SafeArea(
       child: Container(
-      padding: EdgeInsets.all(25),
+      padding: EdgeInsets.fromLTRB(20, 25, 20, 10),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Center(
-              child: Text(titulo, style: TextStyle(color: Colors.white,fontSize: 22.0, fontWeight: FontWeight.bold)),
+              child: Text(titulo, style: TextStyle(color: Colors.white,fontSize: 20.0, fontWeight: FontWeight.bold)),
             ),
             SizedBox(height: 10.0,),
            // Text(subtitulo, style: TextStyle(color: Colors.white,fontSize: 20.0)),
