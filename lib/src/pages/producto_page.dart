@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:MAT115/src/models/Imagenes_model.dart';
 import 'package:MAT115/src/providers/api/api_provider.dart';
 import 'package:flutter/material.dart';
@@ -40,15 +42,28 @@ void initState() {
     Producto productoId = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Ventas"),
-      ),
-      resizeToAvoidBottomPadding: false,
-      drawer: Drawer(
-      child: misWidgets.barraNav(context),
-      ),
-      body: _lista(productoId.id),
-    );
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(35, 37, 57, 1.0),
+          title: Text(productoId.titulo),
+        ),
+        drawer: Drawer(
+        child: misWidgets.barraNav(context),
+        ),
+        body: Stack(
+          children: <Widget>[
+            misWidgets.fondoApp(),
+            SingleChildScrollView(
+              child: Column(
+                children: <Widget>[
+                misWidgets.titulos(productoId.titulo, ""),
+                carta(productoId),
+                _lista(productoId.id)
+                ],
+              ),
+            )
+          ],
+        ),
+      );
   }
 
 
@@ -60,9 +75,9 @@ void initState() {
       future: productosProvider.getPictures(id),
        builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
          if(snapshot.hasData){
-           return ListView(
-           children: _listaItems(snapshot.data, context),
-        );
+           return Table(
+             children: _listaItems(snapshot.data, context),
+           );
          }else if(snapshot.hasError){
            return misWidgets.error();
          }
@@ -73,72 +88,125 @@ void initState() {
   }
 
 
-  //retorna listas
-  List<Widget> _listaItems(List<dynamic> data, BuildContext context){
+  List<TableRow> _listaItems(List<dynamic> data, BuildContext context){
+    final List<TableRow> opciones = [];
+    for (Imagen op in data) {
+      final widgetTemp = TableRow(
+        children: [
+          crearBtn(context, op)
+        ]
+      );
+     opciones.add(widgetTemp);
+    }
+    return opciones;
+  }
+  
 
-    Producto productoId = ModalRoute.of(context).settings.arguments;
-
-
-    final c = Card(
-        clipBehavior: Clip.antiAlias,
-       
-        child: Column(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(10),
-              child: Text(productoId.titulo, style: TextStyle(fontSize: 30)),
-            ),
-            
-            Container(
-              alignment: Alignment.bottomRight,
-              padding: EdgeInsets.all(10),
-              child: Column(
+Widget carta(Producto op){
+      return GestureDetector(
+          onTap: (){
+            _launchURL("https://wa.me/+503"+ op.whatsapp);
+          },
+          child: Container(
+          height: 145.0,
+          width: MediaQuery.of(context).size.width,
+          margin: EdgeInsets.all(9.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107,1.0),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+             SizedBox(width: 10,),
+             Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(productoId.descripcion ?? "sin descripión", style: TextStyle(fontSize: 17)),
+                  SizedBox(width: 16,),
+                  
+                  Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundColor: Colors.pinkAccent,
+                        radius: 15.0,
+                        child: Icon(FontAwesomeIcons.shoppingBag ,color: Colors.white, size: 15,),
+                      ),
+                      SizedBox(width: 6,),
+                      Text("\$ " + op.precio, style: TextStyle(color: Colors.white),),
+                    ],
+                  ),
+                  
+                  SizedBox(width: 6,),
+                  Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundColor: Colors.pinkAccent,
+                        radius: 15.0,
+                        child: Icon(FontAwesomeIcons.whatsapp ,color: Colors.white, size: 20,),
+                      ),
+                      SizedBox(width: 6,),
+                      Text(op.whatsapp, style: TextStyle(color: Colors.white),),
+                    ],
+                  ),
+                  SizedBox(width: 6,),
+                  Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundColor: Colors.pinkAccent,
+                        radius: 15.0,
+                        child: Icon(FontAwesomeIcons.user ,color: Colors.white, size: 20,),
+                      ),
+                      SizedBox(width: 6,),
+                      Text(op.nombre, style: TextStyle(color: Colors.white),),
+                    ],
+                  ),
+                  SizedBox(width: 6,),
+                  Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        backgroundColor: Colors.pinkAccent,
+                        radius: 15.0,
+                        child: Icon(FontAwesomeIcons.calendar ,color: Colors.white, size: 20,),
+                      ),
+                      SizedBox(width: 6,),
+                      Text(op.fecha, style: TextStyle(color: Colors.white),),
+                    ],
+                  ),
+                  SizedBox(width: 6,),
                 ],
               ),
-            ),
-            Divider(),
-            Container(
-              padding: EdgeInsets.all(2),
-              child: ListTile(
-                 title: Text("Publicado por: "+productoId.nombre, style: TextStyle(fontSize: 16),),
-                 subtitle: Text("Fecha: " + productoId.fecha),
-                 trailing: Icon(FontAwesomeIcons.whatsapp ,color: Colors.blue, size: 27,),
-                 onTap: (){
-                  
-                 },
-              )
-            ),
-            
-            
-          ],
-        )
-
-        );
-
-      
-     final List<Widget> opciones = [];
-     opciones.add(Padding(padding:EdgeInsets.all(10.0),));
-     opciones.add(c);
-   
-     for (Imagen op in data) {
-
-      /* final widgetTemp =  ListTile(
-         title: Text(op.nombre),
-         subtitle: Text(op.descripcion ?? ""),
-         //leading: Icon(Icons.insert_emoticon ,color: Colors.blue),
-         leading: Image.network('https://frasesparami.com/wp-content/uploads/2019/06/fotos-tumblr.jpg'),
-         
-       );*/
-          final widgetTemp  = Image.network(api.apiUploads()+ op.url);
-            
-    
-      opciones.add(widgetTemp);
-     }
-     return opciones;
+          ],)
+        ),
+     );
   }
 
+
+    Widget crearBtn(context, Imagen op){
+    //filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+     return Container(
+          height: 410.0,
+          margin: EdgeInsets.all(9.0),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107,1.0),
+            borderRadius: BorderRadius.circular(20.0),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              SizedBox(width: 19,),
+                Image.network(api.apiUploads()+op.url, height: 390, width: 390,
+              ),
+              SizedBox(width: 19,),
+            ],
+          ),
+        );
+      
+  }
+
+
+  //retorna listas
+  
 
 
   _launchURL(String urlx) async {

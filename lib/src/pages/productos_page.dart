@@ -92,15 +92,17 @@ void initState() {
     return opciones;
   }
 
+  
+
 
   Widget crearBtn(context, Producto op){
     //filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
      return GestureDetector(
           onTap: (){
-            //Navigator.pushNamed(context, 'materia', arguments: op);
+            Navigator.pushNamed(context, 'producto', arguments: op);
           },
           child: Container(
-          height: 130.0,
+          height: 110.0,
           margin: EdgeInsets.all(9.0),
           decoration: BoxDecoration(
             color: Color.fromRGBO(62, 66, 107,1.0),
@@ -113,21 +115,26 @@ void initState() {
               
               SizedBox(width: 10,),
               Image.network(api.apiUploads()+op.principal, height: 100, width: 90,
-
               ),
-              SizedBox(width: 5,),
+              SizedBox(width: 9,),
               Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Expanded(
                     child:SizedBox(width:30,), 
                   ),
-                    Text(op.titulo, style: TextStyle(color: Colors.pinkAccent, fontSize: 14.0, fontWeight: FontWeight.bold),),
-                  
+                  Text(op.titulo ,style: TextStyle(color: Colors.pinkAccent, fontSize: 14.0, fontWeight: FontWeight.bold),),
+                  Text(op.fecha ?? "", style: TextStyle(
+                      color: Colors.white, 
+                      fontSize: 12.0, 
+                      fontWeight: FontWeight.bold,
+                      )),
+                  Text("Publicado por: " + op.nombre??"", style: TextStyle(color:Colors.white)),
+                  Text("\$ " + op.precio, style: TextStyle(color:Colors.white)),
                   Expanded(
-                    child: Text(op.titulo, style: TextStyle(color: Colors.pinkAccent, fontSize: 14.0, fontWeight: FontWeight.bold),),
+                    child:SizedBox(width:30,), 
                   ),
-                  SizedBox(width: 60,),
                 ],
               )
               

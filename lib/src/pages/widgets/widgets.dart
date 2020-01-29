@@ -83,7 +83,7 @@ Widget error(){
             ),
             ListTile(
               leading:  new Icon(FontAwesomeIcons.shoppingBag, color: colores,),
-              title: Text('Market Place', style: estilos,),
+              title: Text('Marketplace', style: estilos,),
               onTap: (){
                 Navigator.pushNamed(context, 'productos');
               },
@@ -95,13 +95,13 @@ Widget error(){
                 Navigator.pushNamed(context, 'grupos');
               },
             ),
-            ListTile(
+           /* ListTile(
               leading:  new Icon(FontAwesomeIcons.university, color: colores,),
               title: Text('ASEIAS', style: estilos,),
               onTap: (){
               // Navigator.pushNamed(context, 'info');
               },
-            ),
+            ),*/
             ListTile(
               leading: new Icon(FontAwesomeIcons.user,  color: colores,),
               title: Text('Colaboradores', style: estilos,),
@@ -110,16 +110,16 @@ Widget error(){
               },
 
             ),
-            ListTile(
+           /* ListTile(
               leading:  new Icon(FontAwesomeIcons.pencilAlt, color: colores,),
               title: Text('Tutorias', style: estilos,),
               onTap: (){
               // Navigator.pushNamed(context, 'info');
               },
-            ),
+            ),*/
             ListTile(
               leading:  new Icon(FontAwesomeIcons.info, color: colores,),
-              title: Text('Info', style: estilos,),
+              title: Text('Sobre nosotros', style: estilos,),
               onTap: (){
                 Navigator.pushNamed(context, 'info');
               },

@@ -37,14 +37,20 @@ void initState() {
 
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Colaboradores"),
-      ),
-      drawer: Drawer(
-      child: misWidgets.barraNav(context),
-      ),
-      body: _lista(),
-    );
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(35, 37, 57, 1.0),
+          title: Text("Colaboradores"),
+        ),
+        drawer: Drawer(
+        child: misWidgets.barraNav(context),
+        ),
+        body: Stack(
+          children: <Widget>[
+            misWidgets.fondoApp(),
+            _lista()
+          ],
+        ),
+      );
   }
 
 
@@ -78,10 +84,10 @@ void initState() {
      for (Colaborador op in data) {
 
        final widgetTemp =  ListTile(
-         title: Text(op.nombre),
-         subtitle: Text(op.descripcion),
+         title: Text(op.nombre ,style:TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+         subtitle: Text(op.descripcion??"",style:TextStyle(color: Colors.white)),
    
-         leading: Icon(Icons.insert_emoticon ,color: Colors.blue),
+         leading: Icon(Icons.insert_emoticon ,color: Colors.pinkAccent),
          
          
        );
